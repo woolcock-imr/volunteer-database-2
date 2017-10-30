@@ -1,0 +1,94 @@
+<section class="w3s">
+    VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.html
+    <div class="w3-container w3-content">
+        <form id=F__ID >
+            <div class="w3-container w3-content">
+                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/ecos.jpg"  ><img>
+                    <div class=w3-xxlarge>The Early COPD Smoker Study</div><br>
+                    <div class=w3-xlarge >Are you a smoker aged between 25 and 45 years?</div><br>
+                    <div class=w3-large >Would you like to participate in a clinical trial to try and find out if it is possible to reduce the effects of smoking on your lungs? If you have been a smoker for 10 years or more, we are keen to study you! If you are eligible to participate, you will be seen regularly by a study doctor and receive study-related testing and study medication at no cost.</div><br>
+                    <div class=w3-medium >
+                    <br>
+                        Do you want to participate in this study?
+                    </div><br>
+                    <div class=w3-large >Call 9114 0400
+                        <br><i>Email:</i> Francesca.tang@sydney.edu.au
+                        <br><i>Contact name:</i> Francesca Tang
+                        </div>
+                    <div class=w3-small ><br>
+                    <br><i>Chief Investigator:</i> Professor Christine Jenkins
+                    <br><i>Ethics approvals:</i> Approved by Northern Sydney Local Health District Human Research Ethics Committee: HREC/15/HAWKE/489
+                    </div><br>
+            </div>
+            <div class=w3-medium></div>
+            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+        </form>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //--------------------------------------------
+        var participant_uid=0;
+        var goto_volunteer_data_entry=function(){
+            $vm.module_list['ecos_volunteer_ques']={table_id:'--------',var:{_app_id:'ecos_volunteer_ques'},url:$vm.hosting_path+'/woolcock-imr/Moderate-Trial_Screening/modules/navigation/data_entry_by_volunteer.html'};
+            $vm.load_module_by_name('ecos_volunteer_ques',$vm.root_layout_content_slot,{
+                participant:$vm.user_id,
+                participant_pid:'20009669',
+                participant_uid:participant_uid,
+                task_list:'20009672',
+            });
+        }
+        //--------------------------------------------
+        $('#submit__ID').on('click',function(){
+            var req={cmd:'query_records_s2',db_pid:'20009669',fields:'UID'}      //check screening participant
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.records.length>0){
+                    participant_uid=res.records[0].UID;
+                    //$vm.alert('You have already joined this research project.')
+                    goto_volunteer_data_entry();
+                }
+                else{
+                    $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
+                        if(res.records.length>0){
+                            var record={Volunteer_ID:$vm.user_id};
+                            var dbv={};
+                            //create a screening particpant
+                            var req={cmd:"add_record_s2",db_pid:'20009669',data:record,dbv:dbv};
+                            $VmAPI.request({data:req,callback:function(res){
+                                participant_uid=res.uid;
+                                goto_volunteer_data_entry();
+                            }});
+                        }
+                    }})
+                }
+            }})
+        })
+        //--------------------------------------------
+        $('#back__ID').on('click',function(event){
+              event.stopPropagation();
+              var A='woolcock_volunteer_database_';
+              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
+        });
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__BASE__/vmiis/Common-Code/style/navigation.css
+    VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
+    .w3s input[type=button] {
+        width: 100%;
+        color: white;
+        padding: 4px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #428bca;
+        border-color: #357ebd;
+        font-size: 34px
+    }
+
+    .w3s input[type=button]:hover {
+        background-color: #357ebd;
+    }
+</style>

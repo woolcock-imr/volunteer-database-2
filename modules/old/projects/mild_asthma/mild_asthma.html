@@ -1,0 +1,114 @@
+<section class="w3s">
+    VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.html
+    <div class="w3-container w3-content">
+        <form id=F__ID >
+            <div class="w3-container w3-content">
+                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/mild_asthma.jpg"  ><img>
+                    <div class=w3-xxlarge>A NEW INHALER FOR MILD ASTHMA?</div><br>
+                    <div class=w3-xlarge ></div>
+                    <div class=w3-large ><b>Do you have mild asthma and are using mainly a blue reliever?</b>
+                        <br><br>
+                        A new inhaler for mild asthma is being tested at the Woolcock Institute.
+                        <br><br>
+                        Free inhalers, lung function tests and assessment of your asthma. You will be reimbursed for study visits.
+
+                    </div><br>
+                    <div class=w3-medium >
+                    <br>
+                        Do you want to participate in this study?
+                    </div><br>
+                    <div class=w3-large ><i>Phone number or Email:</i> 1300 303 725; novelstart@woolcock.org.au
+                        <br><i>Contact name:</i> Dr Gloria Foxley
+                        </div>
+                    <div class=w3-small ><br>
+                    <br><i>Chief Investigator:</i> Professor Helen Reddel
+                    <br><i>Ethics approvals:</i> Study approved by SWSLHD (Liverpool), Protocol number MRINZ/15?A1 Version 2.2 (3 September 2015)
+                    </div><br>
+            </div>
+            <div class=w3-medium></div>
+            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+        </form>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //--------------------------------------------
+        var A='woolcock_volunteer_database_';
+        var project_name='mild_asthma';
+        //--------------------------------------------
+        var goto_thanks=function(){
+            $vm.load_module_by_name(A+'projects_thanks',$vm.root_layout_content_slot,{})
+        }
+        //--------------------------------------------
+        var join_project=function(){
+            var req={cmd:'query_records_s2',db_pid:'20009681',fields:'ID',where:"S1='"+project_name+"'"}      //check joined or not
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.records.length>0){
+                    goto_thanks();
+                }
+                else{
+                    $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
+                        if(res.records.length>0){
+                            var record={
+                                Volunteer:res.records[0].First_Name+' '+res.records[0].Last_Name,
+                                Login_Email:res.records[0].Email,
+                                Project:project_name,
+                                Status:'Registration',
+                            };
+                            var dbv={S1:project_name,S3:'Registration'};
+                            var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
+                            $VmAPI.request({data:req,callback:function(res){
+                                goto_thanks();
+                            }});
+                        }
+                    }})
+                    //----------------------
+                    //sending email
+                    var req={cmd:"query_records",sql:"select Information from [TABLE-20009716] where @('Project_Name')='"+project_name+"' "};
+                    $VmAPI.request({data:req,callback:function(res){
+                        if(res.records.length>0){
+                            var contact_email=res.records[0].Contact_Email;
+                            if(contact_email!=''){
+                                $VmAPI.request({data:{cmd:'send_email',From_Address:'noresponse@woolcock.org.au',From_Name:'Database Administrator',To:contact_email,
+                                    Title:"Research participation",
+                                    Body:"A volunteer has shown interest in your study; "+project_name+"."},callback:function(res){
+                                }})
+                            }
+                        }
+                    }})
+                    //----------------------
+                }
+            }})
+        }
+        //--------------------------------------------
+        $('#submit__ID').on('click',function(){
+            join_project();
+        })
+        //--------------------------------------------
+        $('#back__ID').on('click',function(event){
+              event.stopPropagation();
+              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
+        });
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__BASE__/vmiis/Common-Code/style/navigation.css
+    VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
+    .w3s input[type=button] {
+        width: 100%;
+        color: white;
+        padding: 4px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #428bca;
+        border-color: #357ebd;
+        font-size: 34px
+    }
+
+    .w3s input[type=button]:hover {
+        background-color: #357ebd;
+    }
+</style>

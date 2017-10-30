@@ -1,0 +1,31 @@
+<section>
+    <div id=toolbar__ID>
+          <a id=back__ID>Back</a>
+    </div>
+    <hr><br><br>
+        <div style='width:620px;margin-left:auto;margin-right:auto;font-size:20pt;text-align:center';>
+            Thank you for your interest.<br>
+            Please click on the button below to access our online questionnaire.<br>
+            <b>Please note:</b> You will need to register your details again to gain access to the questionnaire.<br>
+            <a href="https://www.windfarmstudy.com" class="w3-btn w3-blue w3-round-xlarge w3-padding-large" target=_blank >Wind Farm Study</a>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__BASE__/vmiis/Common-Code/style/ease-in-out.js
+        //-------------------------------------
+        $('#D__ID').on('load',function(){})
+        //-------------------------------------
+        $('#back__ID').on('click',function(event){
+              event.stopPropagation();
+              var A='woolcock_volunteer_database_';
+              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
+        });
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__BASE__/vmiis/Common-Code/style/default.css
+    VmInclude:__BASE__/vmiis/Common-Code/style/form.css
+</style>

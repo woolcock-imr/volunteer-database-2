@@ -1,0 +1,174 @@
+<section class=w3s >
+<div class="w3-container w3-content w3-row">
+    <form id=F__ID>
+        <div class="w3-container w3-half  w3-padding-12">
+            <h3 class="w3-xlarge">My Details</h3>
+            <div class="form-group">
+                <input type=checkbox id=Medical_Research__ID value='medical research'><label for=Medical_Research__ID> I would like to participate in medical research and agree to be contacted for more information</label>
+                <br><input type=checkbox id=Newsletters__ID value='newsletters'><label for=Newsletters__ID>  I would like to receive updates, including the latest medical findings and break-throughs in respiratory and sleep research, from the Woolcock Institute</label><br>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="First_Name__ID" name="First_Name__ID" placeholder="First Name*">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="Last_Name__ID" name="Last_Name__ID" placeholder="Last Name*">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id=Phone__ID name="Phone__ID" placeholder="Phone*">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id=Postcode__ID name="Postcode__ID" placeholder="Postcode*">
+            </div>
+            <div class="form-group">
+                <div class='w3-quarter w3-padding-8' >
+                    <span>Gender:</span>
+                </div>
+                <div class='w3-threequarter w3-padding-4'>
+                    <select id=Gender__ID Name=Gender__ID placeholder="Gender">
+                        <option value='' >...</option>
+                        <option value='Male' >Male</option>
+                        <option value='Female' >Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id=Year_of_Birth__ID name="Year_of_Birth__ID" placeholder="Year of Birth*">
+            </div>
+            <div class="form-group">
+                Have you been diagnosed with, or think you have?<br>
+                <input type=checkbox id=Asthma__ID value='Asthma' /><label for=Asthma__ID> Asthma</lable><br>
+                <input type=checkbox id=COPD__ID value='COPD' /><label for=COPD__ID> COPD (Chronic Obstructive Pulmonary Disease)</lable><br>
+                <input type=checkbox id=Chronic_Bronchitis__ID value='Chronic Bronchitis' /><label for=Chronic_Bronchitis__ID> Chronic Bronchitis</lable><br>
+                <input type=checkbox id=Emphysema__ID value='Emphysema' /><label for=Emphysema__ID> Emphysema</lable><br>
+                <input type=checkbox id=Rhintis__ID value='Rhintis' /><label for=Rhintis__ID> Rhintis</lable><br>
+                <input type=checkbox id=Lung_Cancer__ID value='Lung Cancer' /><label for=Lung_Cancer__ID> Lung Cancer</lable><br>
+                <input type=checkbox id=Insomnia__ID value='Insomnia' /><label for=Insomnia__ID> Insomnia</lable><br>
+                <input type=checkbox id=Narcolepsy__ID value='Narcolepsy' /><label for=Narcolepsy__ID> Narcolepsy</lable><br>
+                <input type=checkbox id=OSA__ID value='OSA' /><label for=OSA__ID> OSA (Obstructive Sleep Apnoea)</lable><br>
+                <input type=checkbox id=RLS__ID value='RLS' /><label for=RLS__ID> RLS (Restless Leg Syndrome)</lable><br>
+            </div
+            <div class="w3-container">
+                <input class=btn__ID type=button id=submit__ID value="Submit" />
+            </div>
+
+            <div style='text-align:center;font-size:8pt'>
+                <br>
+                The Woolcock Institute of Medical Research recognises the importance of your personal information and privacy. <br>
+                We will use your provided details only to contact you about information we believe will be of interest to you. <br>
+                <a href="http://woolcock.org.au/s/Privacy-Policy-Jan-2016-Final.pdf" target="_blank" >Click here to read our full Privacy Policy.</a>
+            </div>
+        </div>
+
+        </form>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        //Vm Include:__BASE__/woolcock-imr/volunteer-database/common-code/form.js
+        VmInclude:__BASE__/vmiis/Common-Code/style/ease-in-out.js
+        //-------------------------------------
+        $('#D__ID').on('load',function(){
+            $('#F__ID')[0].reset();
+            $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record'},callback:function(res){
+alert(1)                
+                if(res.records.length>0){
+                    var record=res.records[0];
+                    rid=record.ID;
+                    db_to_form(record);
+                }
+            }})
+        })
+        //-------------------------------------
+        $('#submit__ID').on('click',function(){
+            var record={}
+            record.First_Name=$('#First_Name__ID').val();
+            record.Last_Name=$('#Last_Name__ID').val();
+            record.Phone=$('#Phone__ID').val();
+            record.Postcode=$('#Postcode__ID').val();
+            record.Email=$('#Email__ID').val();
+            record.Gender=$('#Gender__ID').val();
+            record.Year_of_Birth=$('#Year_of_Birth__ID').val();
+
+            if($('#Asthma__ID').is(':checked'))             record.Asthma="1"; else record.Asthma='0'
+            if($('#COPD__ID').is(':checked'))               record.COPD="1"; else record.COPD='0'
+            if($('#Chronic_Bronchitis__ID').is(':checked')) record.Chronic_Bronchitis="1"; else record.Chronic_Bronchitis='0'
+            if($('#Emphysema__ID').is(':checked'))          record.Emphysema="1"; else record.Emphysema='0'
+            if($('#Rhintis__ID').is(':checked'))            record.Rhintis="1"; else record.Rhintis='0'
+            if($('#Lung_Cancer__ID').is(':checked'))        record.Lung_Cancer="1"; else record.Lung_Cancer='0'
+            if($('#Insomnia__ID').is(':checked'))           record.Insomnia="1"; else record.Insomnia='0'
+            if($('#Narcolepsy__ID').is(':checked'))         record.Narcolepsy="1"; else record.Narcolepsy='0'
+            if($('#OSA__ID').is(':checked'))                record.OSA="1"; else record.OSA='0'
+            if($('#RLS__ID').is(':checked'))                record.RLS="1"; else record.RLS='0'
+            if($('#Medical_Research__ID').is(':checked'))   record.Medical_Research="1"; else record.Medical_Research='0'
+            if($('#Newsletters__ID').is(':checked'))        record.Newsletters="1"; else record.Newsletters='0'
+            if($('#Medical_Research__ID').is(':checked')==true) {
+                if($('#First_Name__ID').val()===''){
+                    $vm.alert("First Name is compulsory");
+                    return;
+                }
+                if($('#Last_Name__ID').val()===''){
+                    $vm.alert("Last Name is compulsory");
+                    return;
+                }
+                if($('#Phone__ID').val()===''){
+                    $vm.alert("Phone is compulsory");
+                    return;
+                }
+                if($('#Postcode__ID').val()===''){
+                    $vm.alert("Postcode is compulsory");
+                    return;
+                }
+                if($('#Gender__ID').val()===''){
+                    $vm.alert("Gender is compulsory");
+                    return;
+                }
+                if($('#Year_of_Birth__ID').val()===''){
+                    $vm.alert("Year of Birth is compulsory");
+                    return;
+                }
+            }
+            if($('#Registration_Password__ID').val()===''){
+                $vm.alert("Password is compulsory");
+                return;
+            }
+            if($('#Medical_Research__ID').is(':checked')==false && $('#Newsletters__ID').is(':checked')==false){
+                $vm.alert("Please select one or both of the check boxes at the top of the registration page.  This gives us your consent to send a newsletter or contact you about our research.");
+                return;
+            };
+            var dbv={};
+            dbv.ES3=$('#Registration_Password__ID').val();
+        })
+    }
+</script>
+<style>
+VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
+
+.w3s input[type=text], input[type=password], input[type=email], select {
+    width: 100%;
+    padding: 4px 10px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.w3s input[type=button] {
+    width: 100%;
+    color: white;
+    padding: 4px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #428bca;
+    border-color: #357ebd;
+    font-size: 34px
+}
+
+.w3s input[type=button]:hover {
+    background-color: #357ebd;
+}
+
+</style>

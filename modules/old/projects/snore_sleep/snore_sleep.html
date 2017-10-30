@@ -1,0 +1,113 @@
+<section class="w3s">
+    VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.html
+    <div class="w3-container w3-content">
+        <form id=F__ID >
+            <div class="w3-container w3-content">
+                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' style='float:left;margin:0 0 10px 10px' src="__BASE__/woolcock-imr/volunteer-database/images/snore_sleep.jpg"  ><img>
+                    <div class=w3-xxlarge>Do you snore? Are you sleepy?</div><br>
+                    <div class=w3-xlarge ></div>
+                    <div class=w3-large >People who suffer from obstructive sleep apnoea (OSA) have different levels of daytime sleepiness, fatigue, attention & concentration. We aim to better identify these differences and improve OSA treatment.
+                        <br><br>
+                        If you <b>snore</b> and think you <b>may have sleep apnea</b> you could be eligible to participate.
+                        <br><br>
+                        <b>You will receive a diagnostic sleep study and be asked to participate in 2 nights of research testing.</b>
+                        </div><br>
+                    <div class=w3-medium >
+                    <br>
+                        Do you want to participate in this study?
+                    </div><br>
+                    <div class=w3-large ><i>Email:</i> sleepapnea@woolcock.org.au
+                        <br><i>Contact name:</i> Dr Chris Gordon
+                        </div>
+                    <div class=w3-small ><br>
+                    <br><i>Chief Investigator:</i> Dr Andrew Vakulin
+                    <br><i>Ethics approvals:</i> Study approved by SLHD Ethics Committee (RPAH Zone), Protocol number X13-0027 & X14-0390 Version 1 01 February 2016
+                    </div><br>
+            </div>
+            <div class=w3-medium></div>
+            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+        </form>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //--------------------------------------------
+        var A='woolcock_volunteer_database_';
+        var project_name='snore_sleep';
+        //--------------------------------------------
+        var goto_thanks=function(){
+            $vm.load_module_by_name(A+'projects_thanks',$vm.root_layout_content_slot,{})
+        }
+        //--------------------------------------------
+        var join_project=function(){
+            var req={cmd:'query_records_s2',db_pid:'20009681',fields:'ID',where:"S1='"+project_name+"'"}      //check joined or not
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.records.length>0){
+                    goto_thanks();
+                }
+                else{
+                    $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
+                        if(res.records.length>0){
+                            var record={
+                                Volunteer:res.records[0].First_Name+' '+res.records[0].Last_Name,
+                                Login_Email:res.records[0].Email,
+                                Project:project_name,
+                                Status:'Registration',
+                            };
+                            var dbv={S1:project_name,S3:'Registration'};
+                            var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
+                            $VmAPI.request({data:req,callback:function(res){
+                                goto_thanks();
+                            }});
+                        }
+                    }})
+                    //----------------------
+                    //sending email
+                    var req={cmd:"query_records",sql:"select Information from [TABLE-20009716] where @('Project_Name')='"+project_name+"' "};
+                    $VmAPI.request({data:req,callback:function(res){
+                        if(res.records.length>0){
+                            var contact_email=res.records[0].Contact_Email;
+                            if(contact_email!=''){
+                                $VmAPI.request({data:{cmd:'send_email',From_Address:'noresponse@woolcock.org.au',From_Name:'Database Administrator',To:contact_email,
+                                    Title:"Research participation",
+                                    Body:"A volunteer has shown interest in your study; "+project_name+"."},callback:function(res){
+                                }})
+                            }
+                        }
+                    }})
+                    //----------------------
+                }
+            }})
+        }
+        //--------------------------------------------
+        $('#submit__ID').on('click',function(){
+            join_project();
+        })
+        //--------------------------------------------
+        $('#back__ID').on('click',function(event){
+              event.stopPropagation();
+              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
+        });
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__BASE__/vmiis/Common-Code/style/navigation.css
+    VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
+    .w3s input[type=button] {
+        width: 100%;
+        color: white;
+        padding: 4px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #428bca;
+        border-color: #357ebd;
+        font-size: 34px
+    }
+
+    .w3s input[type=button]:hover {
+        background-color: #357ebd;
+    }
+</style>

@@ -1,0 +1,145 @@
+<section class="w3s">
+    VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.html
+    <div class="w3-container w3-content">
+        <form id=F__ID >
+            <div class="w3-container w3-content">
+                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/insomnia.png"  ><img>
+                    <div class=w3-xlarge>Do you have insomnia?<br>Do you want better sleep at night and better concentration during the day?</div><br>
+                    <div class=w3-large ></div>
+                    <div class=w3-large ></div>
+                    <div class=w3-medium >
+                    <br>
+                    At the Woolcock we are trialling a combination of a behavioural intervention with a short script of a new medication that we hope will improve sleep and daytime performance.
+                    <br><br>
+                    You will have access to a Psychologist and Sleep Physician for the duration of this study.
+                    <br><br>
+                    If you would like to be involved in this study please click on the the blue bar below. This will take you to a brief questionnaire about your sleep difficulties.
+                    </div><br>
+                    <div class=w3-large >
+                        <br><i>Email:</i> moderate@woolcock.org.au
+                        <br><i>Contact name:</i> Chris Miller                        </div>
+                    <div class=w3-small ><br>
+                    <br><i>Chief Investigator:</i> Associate Professor Brendon Yee
+                    <br><i>Ethics approvals:</i> The Bellberry Human Research Ethics Committee has reviewed and approved this study (Protocol number 2016-02-104) in accordance with the National Statement on Ethical Conduct in Human Research (2007) incorporating all updates. Australia and New Zealand Clinical Trials Registry number 12614001293651.
+                    </div><br>
+            </div>
+            <div class=w3-medium></div>
+            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+        </form>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //--------------------------------------------
+        var project_name='moderate';
+        //--------------------------------------------
+        var goto_volunteer_data_entry=function(participant_uid){
+            $vm.module_list['moderate_volunteer_ques']={table_id:'--------',var:{_app_id:'moderate_volunteer_ques'},url:$vm.hosting_path+'/woolcock-imr/Moderate-Trial_Screening/modules/navigation/data_entry_by_volunteer.html'};
+            $vm.load_module_by_name('moderate_volunteer_ques',$vm.root_layout_content_slot,{
+                participant:$vm.user_id,
+                participant_pid:'20009669',
+                participant_uid:participant_uid,
+                task_list:'20009672,20009491',
+            });
+        }
+        //--------------------------------------------
+        var join_project=function(){
+            var req={cmd:'query_records_s2',db_pid:'20009681',fields:'ID',where:"S1='"+project_name+"'"}      //check joined or not
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.records.length>0){
+                }
+                else{
+                    $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
+                        if(res.records.length>0){
+                            var record={
+                                Volunteer:res.records[0].First_Name+' '+res.records[0].Last_Name,
+                                Login_Email:res.records[0].Email,
+                                Project:project_name,
+                                Status:'Registration',
+                            };
+                            var dbv={S1:project_name,S3:'Registration'};
+                            var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
+                            $VmAPI.request({data:req,callback:function(res){}});
+                        }
+                    }})
+                    //----------------------
+                    //sending email
+                    var req={cmd:"query_records",sql:"select Information from [TABLE-20009716] where @('Project_Name')='"+project_name+"' "};
+                    $VmAPI.request({data:req,callback:function(res){
+                        if(res.records.length>0){
+                            var contact_email=res.records[0].Contact_Email;
+                            if(contact_email!=''){
+                                $VmAPI.request({data:{cmd:'send_email',
+                                    From_Address:'noresponse@woolcock.org.au',
+                                    From_Name:'Database Administrator',
+                                    To:contact_email,
+                                    Title:"New volunteer",
+                                    Body:"A new volunteer has participated in the study ("+project_name+")."},callback:function(res){
+                                }})
+                            }
+                        }
+                    }})
+                    //----------------------
+                }
+            }})
+        }
+        //--------------------------------------------
+        var check_and_go_screening=function(){
+            var req={cmd:'query_records_s2',db_pid:'20009669',fields:'UID'}      //check screening participant
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.records.length>0){
+                    var participant_uid=res.records[0].UID;
+                    //$vm.alert('You have already joined this research project.')
+                    goto_volunteer_data_entry(participant_uid);
+                }
+                else{
+                    $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
+                        if(res.records.length>0){
+                            var record={Volunteer_ID:$vm.user_id};
+                            var dbv={};
+                            //create a screening particpant
+                            var req={cmd:"add_record_s2",db_pid:'20009669',data:record,dbv:dbv};
+                            $VmAPI.request({data:req,callback:function(res){
+
+                                var participant_uid=res.uid;
+                                goto_volunteer_data_entry(participant_uid);
+                            }});
+                        }
+                    }})
+                }
+            }})
+        }
+        //--------------------------------------------
+        $('#submit__ID').on('click',function(){
+            join_project();
+            check_and_go_screening();
+        })
+        //--------------------------------------------
+        $('#back__ID').on('click',function(event){
+              event.stopPropagation();
+              var A='woolcock_volunteer_database_';
+              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
+        });
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__BASE__/vmiis/Common-Code/style/navigation.css
+    VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
+    .w3s input[type=button] {
+        width: 100%;
+        color: white;
+        padding: 4px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #428bca;
+        border-color: #357ebd;
+        font-size: 34px
+    }
+
+    .w3s input[type=button]:hover {
+        background-color: #357ebd;
+    }
+</style>
