@@ -1,6 +1,28 @@
 {
 	"modules":
 	{
-		"home":		{"url":"/modules/home.html","name_for_search":"Home page (volunteer database)"}
+		"signin_and_registration":         	{"url":"/modules/volunteer/signin_and_registration.html"},
+		"get_password":         			{"url":"/modules/volunteer/get_password.html"},
+
+		"registration_modify":             {"table_id":"20008533","url":"/modules/volunteer/forms/registration_modify.html"},
+		"registration_modification_thanks":{"table_id":"","url":"/modules/volunteer/registration_modification_thanks.html"},
+		"projects_novelstart":             {"table_id":"20009539","url":"/modules/projects/novelstart/novelstart.html"},
+
+		"projects_ecos":                   {"table_id":"20009540","url":"/modules/projects/ecos/ecos.html"},
+		"projects_mild_asthma":            {"table_id":"20009656","url":"/modules/projects/mild_asthma/mild_asthma.html"},
+		"projects_copd_really":            {"table_id":"20009541","url":"/modules/projects/copd_really/copd_really.html"},
+		"projects_circomed":               {"table_id":"20009542","url":"/modules/projects/circomed/circomed.html"},
+		"projects_apas":                   {"table_id":"20009642","url":"/modules/projects/apas/apas.html"},
+		"projects_cmls":                   {"table_id":"20009643","url":"/modules/projects/cmls/cmls.html"},
+		"projects_severe_asthma":          {"table_id":"20009662","url":"/modules/projects/severe_asthma/severe_asthma.html"},
+		"projects_age_asthma":             {"table_id":"20009663","url":"/modules/projects/age_asthma/age_asthma.html"},
+		"projects_app_asthma":             {"table_id":"20009544","url":"/modules/projects/app_asthma/app_asthma.html"},
+		"projects_snore_sleep":            {"table_id":"20009664","url":"/modules/projects/snore_sleep/snore_sleep.html"},
+		"projects_healthy_sleep":          {"table_id":"20009665","url":"/modules/projects/healthy_sleep/healthy_sleep.html"},
+		"projects_dreams_sleep":           {"table_id":"20009666","url":"/modules/projects/dreams_sleep/dreams_sleep.html"},
+		"projects_moderate":               {"table_id":"20009693","url":"/modules/projects/moderate/moderate.html"},
+		"projects_windfarm":               {"table_id":"--------","url":"/modules/projects/windfarm/windfarm.html"},
+		"projects_windfarm_thanks":        {"table_id":"--------","url":"/modules/projects/windfarm/thanks.html"},
+		"projects_thanks":                 {"table_id":"","url":"/modules/projects/thanks.html"}
 	}
 }

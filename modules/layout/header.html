@@ -1,7 +1,7 @@
-<div header id=header__ID style='max-width:1228px;margin-left: auto;margin-right: auto;'>
+<div header id=header__ID>
     <nav id=nav__ID class="navbar navbar-expand-md navbar-dark">
-		<div id=brand__ID>
-	        <a class="navbar-brand d-none d-lg-inline-block" onclick="$vm.nav_load_module('panel_main_home');">
+		<div id=brand__ID >
+	        <a class="navbar-brand d-none d-lg-block" onclick="$vm.nav_load_module('panel_main_home');">
 	        	<div class=large_logo__ID>
 		        	<div class="logo_image__ID"></div>
 		        </div>
@@ -14,7 +14,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbars__ID" class="navbar-collapse collapse">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
                 <!--<li class="nav-item"><a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" onclick="$vm.nav_load_module('panel_main_home');"><i class="fa fa-home"></i> Home</a></li>-->
                 <li><a class="nav-link" onclick="$vm.nav_click_process('vm_signinout');" name=signinout><i class="fa fa-user"></i> Sign In/Out</a></li>
             </ul>
@@ -36,7 +36,9 @@
     <style>
         #header__ID{
             background: rgba(255,255,255,1);
-			/*border-bottom: 1px solid #000;*/
+			 max-width:1228px;
+			 margin-left: auto;
+			 margin-right: auto;'
         }
 		#nav__ID{
 	        z-index:99;
@@ -44,7 +46,7 @@
         }
 		.large_logo__ID{
             color:#fff;
-            padding-left:0px;
+            padding-left:10px;
             display:table;
         }
 		.logo_image__ID{
@@ -59,7 +61,6 @@
         }
 		#navbars__ID{
 	        padding-top:55px;
-            padding-left:290px;
         }
 		#navbars__ID a{
 			color:#000;
