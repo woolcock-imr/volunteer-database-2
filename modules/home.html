@@ -1,4 +1,5 @@
-<section id=panel__ID class="w3s">
+<section id=panel__ID style='max-width:1200px;margin:auto'>
+	<!--
     <div class="w3-container w3-content-21 w3-padding-12 w3-large"  style="background-color:#EAE3EA ">
         <div class='nav__ID'>
             <ul>
@@ -6,6 +7,7 @@
             </ul>
         </div>
     </div>
+-->
     <div class="w3-container w3-content-21">
         <form id=F__ID >
             <div class="w3-large w3-left w3-padding-16">Listed here are all the Woolcock studies that are currently recruiting volunteers. Follow the link and you will be asked to answer some specific questions that will help researchers to identify if you are eligible to participate in this study.</div>
@@ -82,7 +84,7 @@
 <script>
     function F__ID(){
 		//--------------------------------------------------------
-		var prefix=$vm.vm["__ID"].name; //panel_home
+		var prefix=$vm.vm["__ID"].name+"_"; //panel_main
 		$('#panel__ID li').on('click',function(){
 			var m=$(this).attr('module');
 			if(m!=undefined){
@@ -173,6 +175,7 @@
 		height:100%;
         overflow:auto;
 		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.85);
 	}
 	#D__ID li{
 		cursor:pointer;

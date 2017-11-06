@@ -1,0 +1,73 @@
+<section class=w3s >
+<div class="w3-container w3-content w3-row">
+    <form id=F__ID>
+        <div class="w3-container w3-half w3-padding-12" >
+            <a href="http://woolcock.org.au"><figure class="w3-padding-left"><img id=logo__ID src="__BASE__/woolcock-imr/windfarm/images/logo_mm.jpg" style='width:300px'></figure></a>
+            We are an organisation devoted to finding the causes and cures for respiratory and sleep problems.<br>
+            In order to achieve these outcomes we need help from people who are living with these problems.<br><br>
+            Please volunteer to take part in a research project, help us to help you and others.<br>
+            <br>
+            If you already are a volunteer please sign in below otherwise please fill in Registration Form.
+
+            <div >
+                <input id=username__ID type=text placeholder="Email" class=C__ID__input />
+                <br><input id=password__ID type="password" placeholder="Password" class=C__ID__input />
+                <br><span id="ErrMsg__ID" style='color:red'></span>
+                <br><input id=signin__ID type=button value='Sign in' class=C__ID__button />&nbsp; <u id="forgot__ID" style="cursor:pointer;color:#888;font-size:12pt">Forgot Password?</u>
+            </div>
+        </div>
+        </form>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        $('#D__ID').on('load',function(){
+        })
+        //-------------------------------------
+        $('#signin__ID').on('click',function(){
+            var username=$('#username__ID').val();
+            var password=$('#password__ID').val();
+            var req={cmd:'s2_s3_signin',username:username,password:password,db_pid:'20008533'}
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.ret=='1'){
+                    $vm.user="volunteer "+username;
+                    $vm.user_id=res.user_id;
+                    $VmAPI.set_token(res.token);
+					if($vm.user=='guest'){
+			            $('#username_0').text('');
+			        }
+			        else{
+						$('#signin_0').hide();
+						$('#signup_0').hide();
+						$('#signout_0').show();
+						$('#my_details_0').show();
+			            $('#username_0').text('Signed in as '+ $vm.user.replace('system_20008533_',''));
+			            //$('a[name=signinout]').html('<i class="fa fa-user"></i> Sign Out')
+			            //$('#username__ID').text('Signed in as '+ $vm.user.replace('system_20008533_',''));
+			        }
+			        //---------------------------------------------
+					if($vm.module_afetr_signin!=undefined && $vm.module_afetr_signin!='') $vm.nav_load_module($vm.module_afetr_signin);
+					else $vm.nav_load_module('panel_main_my_details');
+                }
+                else{
+                    $('#ErrMsg__ID').text("Invalid username or password.")
+                }
+            }})
+        })
+        //----------------------------------
+        $('#forgot__ID').on('click',function(){
+			var prefix=$vm.module_list[$vm.vm['__ID'].name].prefix; if(prefix==undefined) prefix=""; else prefix+="_";
+			$vm.nav_load_module(prefix+"get_password");
+        })
+        //----------------------------------
+    }
+</script>
+<style>
+	#D__ID{
+		height:100%;
+		overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.85);
+	}
+</style>
