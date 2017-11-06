@@ -7,7 +7,6 @@
 		"registration":	  {"url":"/modules/volunteer/registration.html"},
 		"my_details":	  {"url":"/modules/volunteer/registration_modify.html"},
 
-		"signin_and_registration":         	{"url":"/modules/volunteer/signin_and_registration.html"},
 		"get_password":         			{"url":"/modules/volunteer/get_password.html"},
 
 		"registration_modify":             {"table_id":"20008533","url":"/modules/volunteer/forms/registration_modify.html"},
