@@ -1,4 +1,30 @@
-<section class=w3s >
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:400px'>
+		<div class="text-left panel__ID">
+			<h6>We are an organisation devoted to finding the causes and cures for respiratory and sleep problems.<br>
+            In order to achieve these outcomes we need help from people who are living with these problems.<br><br>
+            Please volunteer to take part in a research project, help us to help you and others.<br>
+            <br>
+            If you already are a volunteer please sign in below otherwise please fill in Registration Form.</h6>
+    	  	  <hr style='border-top:1px solid #fff;'></hr>
+              <div class="">
+                  <input class="form-control" id=username__ID type=text placeholder="Email"  />
+              </div>
+              <br>
+              <div class="">
+              <input class="form-control" id=password__ID type="password" placeholder="Password" class=C__ID__input />
+             </div>
+             <br><span id="ErrMsg__ID" style='color:red'></span>
+             <div class="">
+             <input id=signin__ID type=button value='Sign in' class="btn btn-primary" value="Sign In" />&nbsp;&nbsp;&nbsp;
+             <u id="forgot__ID" style="cursor:pointer;color:#222;font-size:12pt">Forgot Password?</u>
+         </div>
+
+		</div>
+	</div>
+</div>
+
+<!--<section class=w3s >
 <div class="w3-container w3-content w3-row">
     <form id=F__ID>
         <div class="w3-container w3-half w3-padding-12" >
@@ -19,6 +45,7 @@
         </form>
     </div>
 </section>
+-->
 <script>
     function F__ID(){
         //-------------------------------------
@@ -66,8 +93,29 @@
 <style>
 	#D__ID{
 		height:100%;
-		overflow:auto;
+        overflow:auto;
 		animation: vm_module_fadein 1.0s;
 		background:rgba(255,255,255,0.85);
 	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#ddd;
+		font-weight: normal;
+		background: rgba(20,20,20,0.6);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>
