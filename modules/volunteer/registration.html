@@ -1,6 +1,7 @@
 <div id=page__ID>
 	<div id=panel__ID class="container-fluid" style='max-width:1000px'>
 		<div class="text-left panel__ID">
+            <button id=a2__ID class="btn btn-primary">Sign In here if you already are a volunteer</button>
 			<h3>Registration Form</h3>
     	  	  <hr style='border-top:1px solid #fff;'></hr>
               <div class="row row__ID">
@@ -168,6 +169,10 @@
 -->
 <script>
     function F__ID(){
+        //----------------------------------------
+        $('#a2__ID').on('click',function(){
+            $vm.nav_load_module('panel_main_signin');
+        })
         //-------------------------------------
         $('#D__ID').on('load',function(){
             $('#F__ID')[0].reset();
