@@ -1,33 +1,32 @@
-<section class="w3s">
-    <div class="w3-container w3-content">
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:1200px'>
         <form id=F__ID >
-            <div class="w3-container w3-content">
-                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/windfarm.jpg"  ><img>
-                    <div class=w3-xxlarge>Do Wind Farms cause health effects?</div><br>
-                    <div class=w3-large >The drive to develop renewable energies to reduce fossil fuel consumption has resulted in increasing efforts to harvest wind power as a source of renewable energy delivery. This need has resulted in the construction of multiple wind turbine clusters or “wind farms” in rural areas in Australia to generate power.
-                            <br><br>Wind power programs have been opposed by a number of communities, in part due to claims that wind farms pose a risk to health. There is currently a lack of research exploring the effects of wind farms, in particular, inaudible levels of noise (called “infrasound”) on various health outcomes. Some individuals are more sensitive to noise than others, and we will be looking for these individuals to participate in this research study.
-                            <br><br>This study will measure the impact of exposure to noise, including infrasound, on multiple dimensions of human health in individuals who report increased noise sensitivity.
-
-
-</div><br>
-                    <div class=w3-medium >
-                    <br>
-                        Do you want to participate in this study?
-                    </div><br>
-                    <div class=w3-large >
-                        <br><i>Email:</i> windfarmstudy@woolcock.org.au
+    		<div class="text-left panel__ID">
+                <div class="row">
+      			  <div class="col-sm-8">
+                    <h1 class="">Do Wind Farms cause health effects?</h1>
+                    <h2></h2>
+                    <h4>
+						The drive to develop renewable energies to reduce fossil fuel consumption has resulted in increasing efforts to harvest wind power as a source of renewable energy delivery. This need has resulted in the construction of multiple wind turbine clusters or “wind farms” in rural areas in Australia to generate power.
+								<br><br>Wind power programs have been opposed by a number of communities, in part due to claims that wind farms pose a risk to health. There is currently a lack of research exploring the effects of wind farms, in particular, inaudible levels of noise (called “infrasound”) on various health outcomes. Some individuals are more sensitive to noise than others, and we will be looking for these individuals to participate in this research study.
+								<br><br>This study will measure the impact of exposure to noise, including infrasound, on multiple dimensions of human health in individuals who report increased noise sensitivity.
+					</h4>
+                    <p class"lead">Do you want to participate in this study?</p>
+                    <h4>
+						<br><i>Email:</i> windfarmstudy@woolcock.org.au
                         <br><i>Contact name:</i> Garry Cho
-                        </div>
-                    <div class=w3-small ><br>
-                    <br><i>Chief Investigator:</i> Professor Ron Grunstein &amp; A/Prof Nathaniel Marshall
+					</h4>
+					<br><i>Chief Investigator:</i> Professor Ron Grunstein &amp; A/Prof Nathaniel Marshall
                     <br><i>Ethics approvals:</i> Protocol No X16-0073 &amp; HREC/16/RPAH/91)
-                    </div><br>
-            </div>
-            <div class=w3-medium></div>
-            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+                </div>
+                <div class="col-sm-4">
+                    <img class=".img-fluid rounded" style='max-width:100%' src="images/windfarm.jpg"  ><img>
+              </div>
+    		</div>
+			<input class="btn btn-primary" type=button id=submit__ID value="Click here to participate in the study" />
         </form>
-    </div>
-</section>
+	</div>
+</div>
 <script>
     function F__ID(){
         //--------------------------------------------
@@ -35,7 +34,7 @@
         var project_name='windfarm';
         //--------------------------------------------
         var goto_thanks=function(){
-            $vm.load_module_by_name(A+'projects_windfarm_thanks',$vm.root_layout_content_slot,{})
+			$vm.nav_load_module('panel_main_projects_windfarm_thanks');
         }
         //--------------------------------------------
         var join_project=function(){
@@ -82,18 +81,35 @@
         $('#submit__ID').on('click',function(){
             join_project();
         })
-        //--------------------------------------------
-        $('#back__ID').on('click',function(event){
-              event.stopPropagation();
-              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
-        });
-        //-------------------------------------
+		//--------------------------------------------
     }
 </script>
 <style>
 	#D__ID{
 		height:100%;
-		overflow:auto;
+        overflow:auto;
 		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
 	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#ddd;
+		font-weight: normal;
+		background: rgba(20,20,20,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>

@@ -1,33 +1,33 @@
-<section class="w3s">
-    <div class="w3-container w3-content">
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:1200px'>
         <form id=F__ID >
-            <div class="w3-container w3-content">
-                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/copd_really.jpg"  ><img>
-                    <div class=w3-xxlarge>How do COPD medications REALLY work?</div><br>
-                    <div class=w3-xlarge ></div>
-                    <div class=w3-large >There are an increasing number of treatments available for people with COPD. These have been shown in large clinical trials to improve symptoms, increase exercise capacity, and decrease the need for hospitalisation.
+    		<div class="text-left panel__ID">
+                <div class="row">
+      			  <div class="col-sm-8">
+                    <h1 class="display-4">How do COPD medications REALLY work?</h1>
+                    <h2></h2>
+                    <h4>There are an increasing number of treatments available for people with COPD. These have been shown in large clinical trials to improve symptoms, increase exercise capacity, and decrease the need for hospitalisation.
                         <br><br>Despite this success, we still do not fully understand exactly how they work. This is because the underlying physiology of the lung is complex, and thus requires sophisticated measurement tools.
                         <br><br>This study is looking at the effects of some of these commonly-used inhaled medications, called "long-acting bronchodilators", on complex lung physiology. The techniques used include: advanced methods of <b>probing the lung with pressure waves; exhaled gas analysis;</b> and new <b>medical imaging (X-ray) techniques.</b> By understanding more about how these medications work, we may be able to develop better treatments in the future.
                         <br><br>We are looking for people between the ages of 40 and 80, who are current or ex-smokers, and have been diagnosed with COPD or emphysema by their doctor.
-                    </div><br>
-                    <div class=w3-medium >
-                    <br>
-                        Do you want to participate in this study?
-                    </div><br>
-                    <div class=w3-large >Call (02) 9114 0149
+                    </h4>
+                    <p class"lead">Do you want to participate in this study?</p>
+                    <h4>Call (02) 9114 0149
                         <br><i>Email:</i> stephen.milne@woolcock.org.au
                         <br><i>Contact name:</i> Dr Stephen Milne
-                        </div>
-                    <div class=w3-small ><br>
+
+                    </h4>
                     <br><i>Chief Investigator:</i> Professor Greg King
                     <br><i>Ethics approvals:</i> Approved by NSLHD HREC (Ref HREC/14/HAWKE/388)
-                    </div><br>
-            </div>
-            <div class=w3-medium></div>
-            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+                </div>
+                <div class="col-sm-4">
+                    <img class=".img-fluid rounded" style='max-width:100%' src="images/copd_really.jpg"  ><img>
+              </div>
+    		</div>
+			<input class="btn btn-primary" type=button id=submit__ID value="Click here to participate in the study" />
         </form>
-    </div>
-</section>
+	</div>
+</div>
 <script>
     function F__ID(){
         //--------------------------------------------
@@ -35,7 +35,7 @@
         var project_name='copd_really';
         //--------------------------------------------
         var goto_thanks=function(){
-            $vm.load_module_by_name(A+'projects_thanks',$vm.root_layout_content_slot,{})
+			$vm.nav_load_module('panel_main_projects_thanks');
         }
         //--------------------------------------------
         var join_project=function(){
@@ -82,18 +82,35 @@
         $('#submit__ID').on('click',function(){
             join_project();
         })
-        //--------------------------------------------
-        $('#back__ID').on('click',function(event){
-              event.stopPropagation();
-              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
-        });
-        //-------------------------------------
+		//--------------------------------------------
     }
 </script>
 <style>
 	#D__ID{
 		height:100%;
-		overflow:auto;
+        overflow:auto;
 		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
 	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#ddd;
+		font-weight: normal;
+		background: rgba(20,20,20,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>

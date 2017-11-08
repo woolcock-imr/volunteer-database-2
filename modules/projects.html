@@ -56,7 +56,7 @@ function F__ID(){
 			}
 			if($vm.user=="guest"){
 				$vm.module_afetr_signin=prefix+m;
-				$vm.nav_load_module(prefix+"registration");
+				$vm.nav_load_module(prefix+"signin");
 			}
 			else{
 				$vm.nav_load_module(prefix+m);
@@ -67,69 +67,6 @@ function F__ID(){
 	//Vm Include:__CURRENT_PATH__/check-link.js
 	//--------------------------------------------------------
 
-
-
-
-			/*
-	        //---------------------------------------------
-	        Vm Include:__BASE__/vmiis/Common-Code/navigation/navigation.js
-	        Vm Include:__BASE__/vmiis/Common-Code/style/ease-in-out.js
-	        //---------------------------------------------
-	        var _op,_module=$vm.module_list[$vm.vm['__ID'].name];
-	        //---------------------------------------------
-	        _app_id='woolcock_volunteer_database_';
-	        var A='woolcock_volunteer_database_';
-	        var B=$vm.hosting_path+'/'+$vm.repository;
-	        //---------------------------------------------
-	        var _module_list=function(){
-	            var L=$vm.module_list;
-	            L[A+'registration_modify']              ={table_id:'20008533',url:B+'/modules/volunteer/forms/registration_modify.html'};
-	            L[A+'registration_modification_thanks'] ={table_id:'',url:B+'/modules/volunteer/registration_modification_thanks.html'};
-	            L[A+'projects_novelstart']              ={table_id:'20009539',url:B+'/modules/projects/novelstart/novelstart.html'};
-
-	            L[A+'projects_ecos']                    ={table_id:'20009540',url:B+'/modules/projects/ecos/ecos.html'};
-	            L[A+'projects_mild_asthma']             ={table_id:'20009656',url:B+'/modules/projects/mild_asthma/mild_asthma.html'};
-	            L[A+'projects_copd_really']             ={table_id:'20009541',url:B+'/modules/projects/copd_really/copd_really.html'};
-	            L[A+'projects_circomed']                ={table_id:'20009542',url:B+'/modules/projects/circomed/circomed.html'};
-	            L[A+'projects_apas']                    ={table_id:'20009642',url:B+'/modules/projects/apas/apas.html'};
-	            L[A+'projects_cmls']                    ={table_id:'20009643',url:B+'/modules/projects/cmls/cmls.html'};
-	            L[A+'projects_severe_asthma']           ={table_id:'20009662',url:B+'/modules/projects/severe_asthma/severe_asthma.html'};
-	            L[A+'projects_age_asthma']              ={table_id:'20009663',url:B+'/modules/projects/age_asthma/age_asthma.html'};
-	            L[A+'projects_app_asthma']              ={table_id:'20009544',url:B+'/modules/projects/app_asthma/app_asthma.html'};
-
-	            L[A+'projects_snore_sleep']              ={table_id:'20009664',url:B+'/modules/projects/snore_sleep/snore_sleep.html'};
-	            L[A+'projects_healthy_sleep']            ={table_id:'20009665',url:B+'/modules/projects/healthy_sleep/healthy_sleep.html'};
-	            L[A+'projects_dreams_sleep']             ={table_id:'20009666',url:B+'/modules/projects/dreams_sleep/dreams_sleep.html'};
-	            L[A+'projects_moderate']                ={table_id:'20009693',url:B+'/modules/projects/moderate/moderate.html'};
-	            L[A+'projects_windfarm']                ={table_id:'--------',url:B+'/modules/projects/windfarm/windfarm.html'};
-	            L[A+'projects_windfarm_thanks']         ={table_id:'--------',url:B+'/modules/projects/windfarm/thanks.html'};
-	            L[A+'projects_thanks']                  ={table_id:'',url:B+'/modules/projects/thanks.html'};
-	        }
-	        _module_list();
-	        //---------------------------------------------
-	        $('#D__ID').on('load',function(){
-	             _op=$vm.vm['__ID'].op;
-	            var layout_id=_op.layout_id;
-	            if(layout_id!==undefined) $('#username'+layout_id).text('Login as '+ $vm.user);
-	            if(redirect_done==0) redirect();
-	        });
-	        //---------------------------------------------
-	        var redirect_done=0;
-	        //---------------------------------------------
-	        var redirect=function(){
-	            if($vm.ready==1){
-	                redirect_done=1;
-	                var query = window.location.search.substring(1).split('&');
-	                var items=query[0].split('=');
-	                if(items[0]=='redirect'){
-	                    var project=items[1];
-	                    $vm.load_module_by_name(_app_id+project,$vm.root_layout_content_slot,{});
-	                }
-	            }
-	            else setTimeout(redirect,300);
-	        };
-	        //---------------------------------------------
-			*/
 }
 </script>
 <style>
@@ -137,7 +74,7 @@ function F__ID(){
 		height:100%;
         overflow:auto;
 		animation: vm_module_fadein 1.0s;
-		background:rgba(255,255,255,0.85);
+		background:rgba(255,255,255,0.2);
 	}
 	#page__ID{
 		height:100%;
@@ -147,7 +84,7 @@ function F__ID(){
 	.panel__ID{
 		color:#ddd;
 		font-weight: normal;
-		background: rgba(20,20,20,0.6);
+		background: rgba(20,20,20,0.8);
 	    padding: 30px 20px 10px 20px;
 	    border-radius: 15px;
 	}
