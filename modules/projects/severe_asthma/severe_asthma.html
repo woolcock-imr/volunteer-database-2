@@ -9,7 +9,7 @@
                     <h4>
 						<b>Are you using asthma puffers daily but still getting asthma symptoms?</b>
 						<br><br>
-                        The <b>Severe Asthma Register</b> is a central and secure record of people with severe asthma who are willing to be contacted as potentially suitable participants in the latest approved research in severe asthma.						
+                        The <b>Severe Asthma Register</b> is a central and secure record of people with severe asthma who are willing to be contacted as potentially suitable participants in the latest approved research in severe asthma.
 					</h4>
                     <p class"lead">Do you want to participate in this study?</p>
                     <h4>
@@ -78,8 +78,15 @@
             }})
         }
         //--------------------------------------------
-        $('#submit__ID').on('click',function(){
-            join_project();
+		$('#submit__ID').on('click',function(){
+			if($vm.user=="guest"){
+				$vm.module_afetr_signin=$vm.vm['__ID'].name;
+				$vm.nav_load_module("panel_main_signin");
+			}
+			else{
+				join_project();
+			}
+            //join_project();
         })
 		//--------------------------------------------
     }

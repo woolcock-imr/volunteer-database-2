@@ -79,8 +79,15 @@
             }})
         }
         //--------------------------------------------
-        $('#submit__ID').on('click',function(){
-            join_project();
+		$('#submit__ID').on('click',function(){
+			if($vm.user=="guest"){
+				$vm.module_afetr_signin=$vm.vm['__ID'].name;
+				$vm.nav_load_module("panel_main_signin");
+			}
+			else{
+				join_project();
+			}
+            //join_project();
         })
 		//--------------------------------------------
     }
