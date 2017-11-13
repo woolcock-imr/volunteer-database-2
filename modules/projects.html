@@ -54,6 +54,8 @@ function F__ID(){
 				alert(prefix+m +" is not in the module list.");
 				return;
 			}
+			$vm.nav_load_module(prefix+m);
+			/*
 			if($vm.user=="guest"){
 				$vm.module_afetr_signin=prefix+m;
 				$vm.nav_load_module(prefix+"signin");
@@ -61,6 +63,7 @@ function F__ID(){
 			else{
 				$vm.nav_load_module(prefix+m);
 			}
+			*/
 		}
 	})
 	//--------------------------------------------------------
