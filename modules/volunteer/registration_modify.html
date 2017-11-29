@@ -40,43 +40,43 @@
                       </label>
                       <span id=quest__ID ><br>Have you been diagnosed with, or think you have?</span>
                       <label class="control control-checkbox">Asthma
-                          <input type="checkbox"  name="Asthma" value="Asthma" />
+                          <input type="checkbox"  name="Asthma"  id=Asthma__ID value="Asthma" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">COPD (Chronic Obstructive Pulmonary Disease)
-                          <input type="checkbox"  name="COPD" value="COPD" />
+                          <input type="checkbox"  name="COPD" value="COPD" id="COPD__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Chronic Bronchitis
-                          <input type="checkbox"  name="Chronic_Bronchitis" value="Chronic Bronchitis" />
+                          <input type="checkbox"  name="Chronic_Bronchitis" value="Chronic Bronchitis" id="Chronic_Bronchitis__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Emphysema
-                          <input type="checkbox"  name="Emphysema" value="Emphysema" />
+                          <input type="checkbox"  name="Emphysema" value="Emphysema" id="Emphysema__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Rhintis
-                          <input type="checkbox"  name="Rhintis" value="Rhintis" />
+                          <input type="checkbox"  name="Rhintis" value="Rhintis" id="Rhintis__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Lung Cancer
-                          <input type="checkbox"  name="Lung_Cancer" value="Lung Cancer" />
+                          <input type="checkbox"  name="Lung_Cancer" value="Lung Cancer" id="Lung_Cancer__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Insomnia valueInsomnia
-                          <input type="checkbox"  name="Insomnia" value="Insomnia"/>
+                          <input type="checkbox"  name="Insomnia" value="Insomnia" id="Insomnia__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Narcolepsy
-                          <input type="checkbox"  name="Narcolepsy" value="Narcolepsy"/>
+                          <input type="checkbox"  name="Narcolepsy" value="Narcolepsy" id="Narcolepsy__ID"/>
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">OSA (Obstructive Sleep Apnoea)
-                          <input type="checkbox"  name="OSA" value="OSA" />
+                          <input type="checkbox"  name="OSA" value="OSA" id="OSA__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">RLS (Restless Leg Syndrome)
-                          <input type="checkbox"  name="RLS" value=RLS />
+                          <input type="checkbox"  name="RLS" value=RLS id=RLS__ID />
                           <div class="control_indicator"></div>
                       </label>
 
@@ -248,6 +248,15 @@
             }
             var dbv={};
             if($('#Password__ID').val()!=='') dbv.ES3=$('#Password__ID').val();
+			dbv.DT1=$('#Year_of_Birth__ID').val()+"-01-01";
+			dbv.B1=record.Medical_Research;
+			var g1=0; if(record.Gender=='Male') g1=1;
+			var g2=0; if(record.Gender=='Female') g2=1;
+			var s=parseInt(record.Asthma)+2*parseInt(record.COPD)+4*parseInt(record.Chronic_Bronchitis)+8*parseInt(record.Emphysema)+16*parseInt(record.Rhintis);
+			s+=32*parseInt(record.Lung_Cancer)+64*parseInt(record.Insomnia)+128*parseInt(record.Narcolepsy)+256*parseInt(record.OSA)+512*parseInt(record.RLS)+1024*parseInt(g1)+2048*parseInt(g2);
+			dbv.V1=s;
+			dbv.V2=record.Postcode;
+
             var req={cmd:"s2_modify_record",rid:rid,data:record,dbv:dbv};
             $VmAPI.request({data:req,callback:function(res){
                 $vm.nav_load_module('panel_main_registration_modification_thanks')
