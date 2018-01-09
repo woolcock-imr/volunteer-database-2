@@ -46,13 +46,13 @@
                 else{
                     $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
                         if(res.records.length>0){
-                            var record={
+							var record={
                                 Volunteer:res.records[0].First_Name+' '+res.records[0].Last_Name,
                                 Login_Email:res.records[0].Email,
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration'};
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){
                                 goto_thanks();
