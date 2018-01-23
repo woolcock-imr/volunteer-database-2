@@ -55,7 +55,7 @@
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration'};
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){
                                 goto_thanks();
@@ -107,9 +107,9 @@
 		align-items: center;
 	}
 	.panel__ID{
-		color:#ddd;
+		color:#000;
 		font-weight: normal;
-		background: rgba(20,20,20,0.8);
+		background: rgba(255,255,255,0.8);
 	    padding: 30px 20px 10px 20px;
 	    border-radius: 15px;
 	}
