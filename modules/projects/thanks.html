@@ -6,6 +6,7 @@
             If you are eligible to participate in a research project one of our researchers will contact you shortly.<br>
 			</h2>
 			<button id=a1__ID class="btn btn-primary">Research Studies</button><br><br>
+			<button id=a2__ID class="btn btn-primary">Sign Out</button><br><br>
 		</div>
 	</div>
 </div>
@@ -17,7 +18,7 @@
         })
         //-------------------------------------
         $('#a2__ID').on('click',function(){
-            $vm.nav_load_module('panel_main_signin');
+            $vm.nav_signout()
         })
         //-------------------------------------
         $('#D__ID').on('load',function(){
