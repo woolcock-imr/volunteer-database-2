@@ -109,7 +109,7 @@
 		});
 		//--------------------------------------------------------
         $('#D__ID').on('load',function(){
-            $('#F__ID')[0].reset();
+            //$('#F__ID')[0].reset();
         })
         //-------------------------------------
         $('#submit__ID').on('click',function(){
@@ -237,18 +237,20 @@
             Body+='<p class=MsoNormal><a href="http://woolcock.org.au/"><b><span style="font-family:"Arial","sans-serif";color:#E31937;text-decoration:none"><img border=0 width=262 id="Picture 6" src="http://static1.squarespace.com/static/515ba920e4b0afec12175c59/t/524a1887e4b05a2438113f89/1452662918547/?format=262w"></span></b></a></p>';
             $VmAPI.request({data:{cmd:'send_email',From_Address:From_Address,From_Name:From_Name,To:To,Title:Title,Body:Body},callback:function(res){
                 //alert('Email to: '+$('#Email__ID').val()+' has been sent');
+				//if($vm.module_afetr_signin!=undefined && $vm.module_afetr_signin!='') $vm.nav_load_module($vm.module_afetr_signin);
+				$vm.nav_load_module('panel_main_signin');
             }})
 
         }
     }
 </script>
 <style>
-	#D__ID{
-		height:100%;
-        overflow:auto;
-		animation: vm_module_fadein 1.0s;
-		background:rgba(255,255,255,0.85);
-	}
+#D__ID{
+	height:100%;
+	overflow:auto;
+	animation: vm_module_fadein 1.0s;
+	background:rgba(255,255,255,0.2);
+}
 	#page__ID{
 		height:100%;
 		display: flex;
@@ -257,9 +259,9 @@
 	.panel__ID{
 		color:#000;
 		font-weight: normal;
-		background: rgba(20,20,20,0.6);
-	    padding: 30px 20px 10px 20px;
-	    border-radius: 15px;
+		background: rgba(255,255,255,0.8);
+		padding: 30px 20px 10px 20px;
+		border-radius: 15px;
 	}
 	@media screen and (max-width:786px){
 		#page__ID{
@@ -301,7 +303,7 @@
         height: 20px;
         width: 20px;
         background: #e6e6e6;
-        border: 0px solid #000000;
+        border: 1px solid #000000;
     }
     .control-radio .control_indicator {
         border-radius: 50%;
