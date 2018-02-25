@@ -1,34 +1,32 @@
-<section class="w3s">
-    <div class="w3-container w3-content">
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:1200px'>
         <form id=F__ID >
-            <div class="w3-container w3-content">
-
-                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/apas.jpg"  ><img>
-                    <div class=w3-xxlarge>Does your child use an inhaler? Are they starting to use it on their own?</div><br>
-                    <div class=w3-xlarge ></div>
-                    <div class=w3-large >
-                        <br><br>You are invited to take part in a research study about how and why children come to manage their own asthma from the parents’ perspective. We are trying to understand the challenges associated with the transition from parent supervision to child independence when it comes to asthma medication use. By understanding this process and the challenges, we hope to be able to develop ways in which health care providers can better support this transition.
+    		<div class="text-left panel__ID">
+                <div class="row">
+      			  <div class="col-sm-8">
+                    <h1 class="display-4">Does your child use an inhaler? Are they starting to use it on their own?</h1>
+                    <h2></h2>
+                    <h4>
+						<br><br>You are invited to take part in a research study about how and why children come to manage their own asthma from the parents’ perspective. We are trying to understand the challenges associated with the transition from parent supervision to child independence when it comes to asthma medication use. By understanding this process and the challenges, we hope to be able to develop ways in which health care providers can better support this transition.
                         <br><br>If you have a child between the ages of 4 and 18 and would like to participate, please contact Prof Sinthia Bosnic-Anticevich or Ms Pamela Srour at Woolcock.respimedicines@sydney.edu.au or 02 9114 0369.
                         <br><br>We greatly appreciate your support and hope that you are interested to work with us to find solutions to the challenges faced by parents assisting and caring for children using asthma medicines. We are able to provide a $50 Coles/Myer gift voucher to all carer participants to cover any inconvenience as well as education on the latest findings in regards to asthma management and the use of asthma medicines.
-
-                    </div><br>
-                    <div class=w3-medium >
-                    <br>
-                        Do you want to participate in this study?
-                    </div><br>
-                    <div class=w3-large ><i>Email:</i> Woolcock.respimedicines@sydney.edu.au
+                    </h4>
+                    <p class"lead">Do you want to participate in this study?</p>
+                    <h4>
+						<i>Email:</i> Woolcock.respimedicines@sydney.edu.au
                         <br><i>Contact name:</i> Associate Professor Prof Sinthia Bosnic-Anticevich or Ms Pamela Srour
-                        </div>
-                    <div class=w3-small ><br>
-                    <br><i>Chief Investigator:</i> Associate Professor Sinthia Bosnic-Anticevich
+                    </h4>
+					<br><i>Chief Investigator:</i> Associate Professor Sinthia Bosnic-Anticevich
                     <br><i>Ethics approvals:</i> Bellberry Human research ethics committee
-                    </div><br>
-            </div>
-            <div class=w3-medium></div>
-            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+                </div>
+                <div class="col-sm-4">
+                    <img class=".img-fluid rounded" style='max-width:100%' src="images/apas.jpg"  ><img>
+              </div>
+    		</div>
+			<input class="btn btn-primary" type=button id=submit__ID value="Click here to participate in the study" />
         </form>
-    </div>
-</section>
+	</div>
+</div>
 <script>
     function F__ID(){
         //--------------------------------------------
@@ -36,7 +34,7 @@
         var project_name='apas';
         //--------------------------------------------
         var goto_thanks=function(){
-            $vm.load_module_by_name(A+'projects_thanks',$vm.root_layout_content_slot,{})
+			$vm.nav_load_module('panel_main_projects_thanks');
         }
         //--------------------------------------------
         var join_project=function(){
@@ -54,7 +52,7 @@
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration'};
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){
                                 goto_thanks();
@@ -81,20 +79,44 @@
         }
         //--------------------------------------------
         $('#submit__ID').on('click',function(){
-            join_project();
+			if($vm.user=="guest"){
+				$vm.module_afetr_signin=$vm.vm['__ID'].name;
+				$vm.nav_load_module("panel_main_signin");
+			}
+			else{
+				join_project();
+			}
+            //join_project();
         })
-        //--------------------------------------------
-        $('#back__ID').on('click',function(event){
-              event.stopPropagation();
-              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
-        });
-        //-------------------------------------
+		//--------------------------------------------
     }
 </script>
 <style>
 	#D__ID{
 		height:100%;
-		overflow:auto;
+        overflow:auto;
 		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
 	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>

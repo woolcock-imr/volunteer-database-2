@@ -1,27 +1,24 @@
 <section class="w3s">
-    VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.html
     <div class="w3-container w3-content">
         <form id=F__ID >
             <div class="w3-container w3-content">
-                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/copd_really.jpg"  ><img>
-                    <div class=w3-xxlarge>How do COPD medications REALLY work?</div><br>
+                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/severe_asthma.jpg"  ><img>
+                    <div class=w3-xxlarge>Severe Asthma Register</div><br>
                     <div class=w3-xlarge ></div>
-                    <div class=w3-large >There are an increasing number of treatments available for people with COPD. These have been shown in large clinical trials to improve symptoms, increase exercise capacity, and decrease the need for hospitalisation.
-                        <br><br>Despite this success, we still do not fully understand exactly how they work. This is because the underlying physiology of the lung is complex, and thus requires sophisticated measurement tools.
-                        <br><br>This study is looking at the effects of some of these commonly-used inhaled medications, called "long-acting bronchodilators", on complex lung physiology. The techniques used include: advanced methods of <b>probing the lung with pressure waves; exhaled gas analysis;</b> and new <b>medical imaging (X-ray) techniques.</b> By understanding more about how these medications work, we may be able to develop better treatments in the future.
-                        <br><br>We are looking for people between the ages of 40 and 80, who are current or ex-smokers, and have been diagnosed with COPD or emphysema by their doctor.
-                    </div><br>
+                    <div class=w3-large ><b>Are you using asthma puffers daily but still getting asthma symptoms?</b>
+                        <br><br>
+                        The <b>Severe Asthma Register</b> is a central and secure record of people with severe asthma who are willing to be contacted as potentially suitable participants in the latest approved research in severe asthma.
+                        </div><br>
                     <div class=w3-medium >
                     <br>
                         Do you want to participate in this study?
                     </div><br>
-                    <div class=w3-large >Call (02) 9114 0149
-                        <br><i>Email:</i> stephen.milne@woolcock.org.au
-                        <br><i>Contact name:</i> Dr Stephen Milne
+                    <div class=w3-large ><i>Phone number or Email:</i> 9114 0444; gloria.foxley@sydney.edu.au
+                        <br><i>Contact name:</i> Dr Gloria Foxley
                         </div>
                     <div class=w3-small ><br>
-                    <br><i>Chief Investigator:</i> Professor Greg King
-                    <br><i>Ethics approvals:</i> Approved by NSLHD HREC (Ref HREC/14/HAWKE/388)
+                    <br><i>Chief Investigator:</i> Professor Peter Gibson
+                    <br><i>Ethics approvals:</i> Ethics approval from Hunter New England Human Research Ethics Committee reference number project Ref: 12/11/21/4.04
                     </div><br>
             </div>
             <div class=w3-medium></div>
@@ -33,7 +30,7 @@
     function F__ID(){
         //--------------------------------------------
         var A='woolcock_volunteer_database_';
-        var project_name='copd_really';
+        var project_name='severe_asthma';
         //--------------------------------------------
         var goto_thanks=function(){
             $vm.load_module_by_name(A+'projects_thanks',$vm.root_layout_content_slot,{})
@@ -54,7 +51,7 @@
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration'};
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){
                                 goto_thanks();
@@ -92,22 +89,9 @@
     }
 </script>
 <style>
-    VmInclude:__BASE__/vmiis/Common-Code/style/navigation.css
-    VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
-    .w3s input[type=button] {
-        width: 100%;
-        color: white;
-        padding: 4px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: #428bca;
-        border-color: #357ebd;
-        font-size: 34px
-    }
-
-    .w3s input[type=button]:hover {
-        background-color: #357ebd;
-    }
+	#D__ID{
+		height:100%;
+		overflow:auto;
+		animation: vm_module_fadein 1.0s;
+	}
 </style>

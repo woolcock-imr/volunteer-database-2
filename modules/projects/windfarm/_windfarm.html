@@ -1,26 +1,26 @@
 <section class="w3s">
-    VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.html
     <div class="w3-container w3-content">
         <form id=F__ID >
             <div class="w3-container w3-content">
+                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/windfarm.jpg"  ><img>
+                    <div class=w3-xxlarge>Do Wind Farms cause health effects?</div><br>
+                    <div class=w3-large >The drive to develop renewable energies to reduce fossil fuel consumption has resulted in increasing efforts to harvest wind power as a source of renewable energy delivery. This need has resulted in the construction of multiple wind turbine clusters or “wind farms” in rural areas in Australia to generate power.
+                            <br><br>Wind power programs have been opposed by a number of communities, in part due to claims that wind farms pose a risk to health. There is currently a lack of research exploring the effects of wind farms, in particular, inaudible levels of noise (called “infrasound”) on various health outcomes. Some individuals are more sensitive to noise than others, and we will be looking for these individuals to participate in this research study.
+                            <br><br>This study will measure the impact of exposure to noise, including infrasound, on multiple dimensions of human health in individuals who report increased noise sensitivity.
 
-                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/age_asthma.jpg"  ><img>
-                    <div class=w3-xxlarge>Does inflammation in the airways change with age in asthma?</div><br>
-                    <div class=w3-xlarge ></div>
-                    <div class=w3-large ><b>Are you over 40 and do you have asthma? Are you a non smoker?</b>
-                        <br><br>
-                        Older people with asthma can have more problems with asthma than younger people do. This study is looking at the cells that cause airway inflammation in older people with asthma. It will have an impact on the way we design drugs for asthma. The study will involve 4 visits where we will perform breathing tests, blood tests & look down your airway with a camera on the end of a flexible tube using a standard method (bronchoscopy). Suitable participants will receive all study related procedures at no cost and travel expenses/time will be reimbursed for the participants from the Sydney area.
-                        </div><br>
+
+</div><br>
                     <div class=w3-medium >
                     <br>
                         Do you want to participate in this study?
                     </div><br>
-                    <div class=w3-large ><i>Phone number or Email:</i> (02) 9114 0148, katrina.tonga@woolcock.org.au
-                        <br><i>Contact name:</i> Katrina Tonga
+                    <div class=w3-large >
+                        <br><i>Email:</i> windfarmstudy@woolcock.org.au
+                        <br><i>Contact name:</i> Garry Cho
                         </div>
                     <div class=w3-small ><br>
-                    <br><i>Chief Investigator:</i> Claude Farah
-                    <br><i>Ethics approvals:</i> Approved by the Sydney Local Health District HREC (HREC/14/CRGH/75)
+                    <br><i>Chief Investigator:</i> Professor Ron Grunstein &amp; A/Prof Nathaniel Marshall
+                    <br><i>Ethics approvals:</i> Protocol No X16-0073 &amp; HREC/16/RPAH/91)
                     </div><br>
             </div>
             <div class=w3-medium></div>
@@ -32,10 +32,10 @@
     function F__ID(){
         //--------------------------------------------
         var A='woolcock_volunteer_database_';
-        var project_name='age_asthma';
+        var project_name='windfarm';
         //--------------------------------------------
         var goto_thanks=function(){
-            $vm.load_module_by_name(A+'projects_thanks',$vm.root_layout_content_slot,{})
+            $vm.load_module_by_name(A+'projects_windfarm_thanks',$vm.root_layout_content_slot,{})
         }
         //--------------------------------------------
         var join_project=function(){
@@ -53,7 +53,7 @@
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration'};
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){
                                 goto_thanks();
@@ -74,7 +74,7 @@
                             }
                         }
                     }})
-                    //----------------------                    
+                    //----------------------
                 }
             }})
         }
@@ -91,22 +91,9 @@
     }
 </script>
 <style>
-    VmInclude:__BASE__/vmiis/Common-Code/style/navigation.css
-    VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
-    .w3s input[type=button] {
-        width: 100%;
-        color: white;
-        padding: 4px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: #428bca;
-        border-color: #357ebd;
-        font-size: 34px
-    }
-
-    .w3s input[type=button]:hover {
-        background-color: #357ebd;
-    }
+	#D__ID{
+		height:100%;
+		overflow:auto;
+		animation: vm_module_fadein 1.0s;
+	}
 </style>

@@ -1,31 +1,32 @@
-<section class="w3s">
-    <div class="w3-container w3-content">
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:1200px'>
         <form id=F__ID >
-            <div class="w3-container w3-content">
-                    <img class="w3-ima" style='float:right;margin:10px 10px 10px 10px;max-width:400px' src="__BASE__/woolcock-imr/volunteer-database/images/severe_asthma.jpg"  ><img>
-                    <div class=w3-xxlarge>Severe Asthma Register</div><br>
-                    <div class=w3-xlarge ></div>
-                    <div class=w3-large ><b>Are you using asthma puffers daily but still getting asthma symptoms?</b>
-                        <br><br>
+    		<div class="text-left panel__ID">
+                <div class="row">
+      			  <div class="col-sm-8">
+                    <h1 class="display-4">Severe Asthma Register</h1>
+                    <h2></h2>
+                    <h4>
+						<b>Are you using asthma puffers daily but still getting asthma symptoms?</b>
+						<br><br>
                         The <b>Severe Asthma Register</b> is a central and secure record of people with severe asthma who are willing to be contacted as potentially suitable participants in the latest approved research in severe asthma.
-                        </div><br>
-                    <div class=w3-medium >
-                    <br>
-                        Do you want to participate in this study?
-                    </div><br>
-                    <div class=w3-large ><i>Phone number or Email:</i> 9114 0444; gloria.foxley@sydney.edu.au
-                        <br><i>Contact name:</i> Dr Gloria Foxley
-                        </div>
-                    <div class=w3-small ><br>
-                    <br><i>Chief Investigator:</i> Professor Peter Gibson
-                    <br><i>Ethics approvals:</i> Ethics approval from Hunter New England Human Research Ethics Committee reference number project Ref: 12/11/21/4.04
-                    </div><br>
-            </div>
-            <div class=w3-medium></div>
-            <input class=btn__ID type=button id=submit__ID value="Click here to participate in the study" />
+					</h4>
+                    <p class"lead">Do you want to participate in this study?</p>
+                    <h4>
+						<i>Phone number or Email:</i> 9114 0444; gloria.foxley@sydney.edu.au
+							<br><i>Contact name:</i> Dr Gloria Foxley
+						                    </h4>
+											<br><i>Chief Investigator:</i> Professor Peter Gibson
+						                    <br><i>Ethics approvals:</i> Ethics approval from Hunter New England Human Research Ethics Committee reference number project Ref: 12/11/21/4.04
+                </div>
+                <div class="col-sm-4">
+                    <img class=".img-fluid rounded" style='max-width:100%' src="images/severe_asthma.jpg"  ><img>
+              </div>
+    		</div>
+			<input class="btn btn-primary" type=button id=submit__ID value="Click here to participate in the study" />
         </form>
-    </div>
-</section>
+	</div>
+</div>
 <script>
     function F__ID(){
         //--------------------------------------------
@@ -33,7 +34,7 @@
         var project_name='severe_asthma';
         //--------------------------------------------
         var goto_thanks=function(){
-            $vm.load_module_by_name(A+'projects_thanks',$vm.root_layout_content_slot,{})
+			$vm.nav_load_module('panel_main_projects_thanks');
         }
         //--------------------------------------------
         var join_project=function(){
@@ -51,7 +52,7 @@
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration'};
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){
                                 goto_thanks();
@@ -78,20 +79,44 @@
         }
         //--------------------------------------------
         $('#submit__ID').on('click',function(){
-            join_project();
+			if($vm.user=="guest"){
+				$vm.module_afetr_signin=$vm.vm['__ID'].name;
+				$vm.nav_load_module("panel_main_signin");
+			}
+			else{
+				join_project();
+			}
+            //join_project();
         })
-        //--------------------------------------------
-        $('#back__ID').on('click',function(event){
-              event.stopPropagation();
-              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
-        });
-        //-------------------------------------
+		//--------------------------------------------
     }
 </script>
 <style>
 	#D__ID{
 		height:100%;
-		overflow:auto;
+        overflow:auto;
 		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
 	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>

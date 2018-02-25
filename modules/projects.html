@@ -1,7 +1,6 @@
 <div id=page__ID>
-<<<<<<< HEAD
 	<div id=panel__ID class="container-fluid" style='max-width:1200px'>
-		<div class="text-left panel__ID">
+		<div class="text-center panel__ID">
 			<h6>Listed here are all the Woolcock studies that are currently recruiting volunteers. Follow the link and you will be asked to answer some specific questions that will help researchers to identify if you are eligible to participate in this study.</h6>
     	  	  <hr style='border-top:1px solid #fff;'></hr>
               <div class="row">
@@ -9,19 +8,19 @@
     				  <h5 class= "text-center">RESPIRATORY RESEARCH</h5>
                       <div class="text-left">
                           <ul>
-                              <li module=projects_ecos style='color:white' ><u>The Early COPD in Smokers Study</u></li>
+                              <li module=projects_ecos style='color:black' ><u>The Early COPD in Smokers Study</u></li>
                               Are you a smoker aged 25-45 years? We are running a study to find out if it is possible to open up the airways with a puffer and reduce the effects of smoking on your lungs. If eligible, you will receive medical examination, lung testing and study medication at no cost.
                               <br><br>
-                              <li module=projects_copd_really style='color:white'><u>How do COPD medications REALLY work?</u></li>
+                              <li module=projects_copd_really style='color:black'><u>How do COPD medications REALLY work?</u></li>
                               A world-first study looking at how some commonly-prescribed COPD medications work deep inside the lungs, using new and advanced measurements of lung function and medical imaging technology
                               <br><br>
-                              <li module=projects_circomed style='color:white'><u>How is your COPD affected by sleep disturbances?</u></li>
+                              <li module=projects_circomed style='color:black'><u>How is your COPD affected by sleep disturbances?</u></li>
                               In COPD, sleep disturbances appear to be common. This may include waking during the night, poor quality sleep and waking with breathing problems. The aim of this study is to determine how commonly sleep disturbance occur and whether they are linked to COPD severity, changes in lung function or pre-existing sleep disordered breathing.
                               <br><br>
-                              <li module=projects_apas style='color:white'><u>Does your child use an inhaler? Are they starting to use it on their own?</u></li>
+                              <li module=projects_apas style='color:black'><u>Does your child use an inhaler? Are they starting to use it on their own?</u></li>
                               If you have a child between the ages of 4 and 18 who uses an inhaler for asthma you are invited to take part in a research study about how and why children come to manage their own asthma from the parents’ perspective.
                               <br><br>
-                              <li module=projects_severe_asthma style='color:white'><u>Severe Asthma Register</u></li>
+                              <li module=projects_severe_asthma style='color:black'><u>Severe Asthma Register</u></li>
                               The Severe Asthma Register is a central and secure record of people with severe asthma who are willing to be contacted as potentially suitable participants in the latest approved research in severe asthma, including trials of treatments for severe asthma.
                           </ul>
                       </div>
@@ -30,62 +29,76 @@
     				  <h5 class= "text-center">SLEEP RESEARCH</h5>
                       <div class="text-left" style='font-size:90%'>
                           <ul>
-                              <li module=projects_moderate style='color:white'><u>Do you have insomnia? Do you want better sleep at night and better concentration during the day?</u></li>
+                              <li module=projects_moderate style='color:black'><u>Do you have insomnia? Do you want better sleep at night and better concentration during the day?</u></li>
                               At the Woolcock we are trialling a combination of a behavioural intervention with a short script of a new medication that we hope will improve sleep and daytime performance. If you think you would like to be involved in this study please follow this link for more details.
                               <br><br>
-                              <li module=projects_windfarm style='color:white'><u>Do Wind Farms cause health effects?</u></li>
+                              <li module=projects_windfarm style='color:black'><u>Do Wind Farms cause health effects?</u></li>
                               This study will investigate the effects the sound that comes from Wind farms (called infrasound) and traffic noise have on people when compared to silence. We will look at the effects on sleep and various other aspects of health.
-                              <br>The study will take place over 3 weekend in our Sleep Centre.
+                              <br>The study will take place over 3 weekends in our Sleep Centre.
                               <br><br>
                           </ul>
                       </div>
     			  </div>
               </div>
-=======
-	<div class="container-fluid" style='max-width:800px'>
-		<div class="text-center">
-		  <h1><a id=a1__ID>Please volunteer to take part in a research project, help us to help you and others</a></h1>
-	  	  <hr style='border-top:1px solid #888;'></hr>
-		  <button id=a2__ID class="btn btn-primary">Browse Research Studies</button>
-		  <br>
-		  <br><br>
->>>>>>> 1c5b8718646924513b33b763249ca67980456c05
 		</div>
 	</div>
 </div>
 <script>
-	function F__ID(){
-        //----------------------------------------
-		$('#a1__ID').on('click',function(){
-			$vm.nav_load_module('panel_main_projects');
-		})
-		//----------------------------------------
-		$('#a2__ID').on('click',function(){
-			$vm.nav_load_module('panel_main_projects');
-		})
-		//----------------------------------------
-	}
+function F__ID(){
+	//--------------------------------------------------------
+	var prefix=$vm.module_list[$vm.vm["__ID"].name].prefix+"_"; //panel_main
+    prefix=prefix.replace('__','_');
+	$('#panel__ID li').on('click',function(){
+		var m=$(this).attr('module');
+		if(m!=undefined){
+			if($vm.module_list[prefix+m]==undefined){
+				alert(prefix+m +" is not in the module list.");
+				return;
+			}
+			$vm.nav_load_module(prefix+m);
+			/*
+			if($vm.user=="guest"){
+				$vm.module_afetr_signin=prefix+m;
+				$vm.nav_load_module(prefix+"signin");
+			}
+			else{
+				$vm.nav_load_module(prefix+m);
+			}
+			*/
+		}
+	})
+	//--------------------------------------------------------
+	//Vm Include:__CURRENT_PATH__/check-link.js
+	//--------------------------------------------------------
+
+}
 </script>
 <style>
 	#D__ID{
 		height:100%;
         overflow:auto;
 		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
 	}
 	#page__ID{
-        color:#fff;
 		height:100%;
 		display: flex;
 		align-items: center;
 	}
-	#a1__ID{
-		cursor:pointer;
-		color:#666;
-	}
-	#a1__ID:hover{
+	.panel__ID{
 		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
 	}
-	#a2__ID{
+	@media screen and (max-width:1200px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
 		cursor:pointer;
 	}
+
 </style>

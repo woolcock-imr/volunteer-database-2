@@ -1,31 +1,58 @@
-<section>
-    <div id=toolbar__ID>
-          <a id=back__ID>Back</a>
-    </div>
-    <hr><br><br>
-        <div style='width:620px;margin-left:auto;margin-right:auto;font-size:20pt;text-align:center';>
-            Thank you for your interest.<br>
-            Please click on the button below to access our online questionnaire.<br>
-            <b>Please note:</b> You will need to register your details again to gain access to the questionnaire.<br>
-            <a href="https://www.windfarmstudy.com" class="w3-btn w3-blue w3-round-xlarge w3-padding-large" target=_blank >Wind Farm Study</a>
-    </div>
-</section>
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:900px'>
+		<div class="text-center panel__ID">
+			<p  class="h3">
+				Thank you for your interest.<br>
+	            Please click on the button below to access our online questionnaire.<br><br>
+	            <b>Please note:</b> You will need to register your details again to gain access to the questionnaire.<br><br>
+	            <a href="https://www.windfarmstudy.com" class="btn btn-primary" target=_blank >Wind Farm Study</a><br><br>
+			</p>
+			<button id=a1__ID class="btn btn-primary">Research Studies</button><br><br>
+            <button id=a2__ID class="btn btn-primary">Sign In</button>
+		</div>
+	</div>
+</div>
 <script>
     function F__ID(){
         //-------------------------------------
-        VmInclude:__BASE__/vmiis/Common-Code/style/ease-in-out.js
+        $('#a1__ID').on('click',function(){
+            $vm.nav_load_module('panel_main_projects');
+        })
         //-------------------------------------
-        $('#D__ID').on('load',function(){})
+        $('#a2__ID').on('click',function(){
+            $vm.nav_load_module('panel_main_signin');
+        })
         //-------------------------------------
-        $('#back__ID').on('click',function(event){
-              event.stopPropagation();
-              var A='woolcock_volunteer_database_';
-              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
-        });
-        //-------------------------------------
+        $('#D__ID').on('load',function(){
+        })
     }
 </script>
 <style>
-    VmInclude:__BASE__/vmiis/Common-Code/style/default.css
-    VmInclude:__BASE__/vmiis/Common-Code/style/form.css
+	#D__ID{
+		height:100%;
+        overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
+	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>

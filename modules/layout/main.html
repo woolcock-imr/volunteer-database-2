@@ -9,6 +9,8 @@ VmInclude:/modules/layout/footer.html
 <script main-layout-js>
 	function F__ID(){
 		//------------------------------------
+		var home_page_module='panel_main_projects'
+		//------------------------------------
 		var website_item_list_for_search=[]
 		//------------------------------------
 		var set_height=function(h){
@@ -52,11 +54,9 @@ VmInclude:/modules/layout/footer.html
 		}
 		//------------------------------------
 		//This is the place we can add background image to body (Asynchronous)
-		/*
 		var $image1 = $("<img>");
 		$image1.on('load',(function(){ $('body').css("background", "url("+$(this).attr("src")+") no-repeat bottom center"); $('body').css("background-size", "cover");  }));
 		$image1.attr("src", "__HOST__/images/background.jpg");
-		*/
 		//------------------------------------
 		//over write vm alert
 		$vm.alert=function(msg){
@@ -83,10 +83,9 @@ VmInclude:/modules/layout/footer.html
 			$("#vm_system_search").focus(function(){$("#vm_system_search").autocomplete("search","");});
 		}
 		//------------------------------------
-		var home_page_module='panel_home'
 		var load_home_module=function(){
 			var a=window.location.href.split('module=');
-			if(a.length!=2)	$vm.nav_load_module('panel_home');
+			if(a.length!=2)	$vm.nav_load_module(home_page_module);
 			else{
 				var name=a[1].split('&')[0];
 				if(name.length>0){

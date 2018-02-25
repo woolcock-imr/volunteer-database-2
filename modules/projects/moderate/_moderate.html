@@ -1,5 +1,4 @@
 <section class="w3s">
-    VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.html
     <div class="w3-container w3-content">
         <form id=F__ID >
             <div class="w3-container w3-content">
@@ -57,7 +56,7 @@
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration'};
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){}});
                         }
@@ -124,22 +123,9 @@
     }
 </script>
 <style>
-    VmInclude:__BASE__/vmiis/Common-Code/style/navigation.css
-    VmInclude:__BASE__/woolcock-imr/volunteer-database/assets/w3.css
-    .w3s input[type=button] {
-        width: 100%;
-        color: white;
-        padding: 4px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: #428bca;
-        border-color: #357ebd;
-        font-size: 34px
-    }
-
-    .w3s input[type=button]:hover {
-        background-color: #357ebd;
-    }
+	#D__ID{
+		height:100%;
+		overflow:auto;
+		animation: vm_module_fadein 1.0s;
+	}
 </style>

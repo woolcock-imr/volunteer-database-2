@@ -1,29 +1,56 @@
-<section>
-    <div id=toolbar__ID>
-          <a id=back__ID>Back</a>
-    </div>
-    <hr><br><br>
-        <div style='width:620px;margin-left:auto;margin-right:auto;font-size:20pt;text-align:center';>
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:700px'>
+		<div class="text-center panel__ID">
+			<h2>
             Thank you for your interest in research at the Woolcock.<br> <br>
             If you are eligible to participate in a research project one of our researchers will contact you shortly.<br>
-    </div>
-</section>
+			</h2>
+			<button id=a1__ID class="btn btn-primary">Research Studies</button><br><br>
+			<button id=a2__ID class="btn btn-primary">Sign Out</button><br><br>
+		</div>
+	</div>
+</div>
 <script>
     function F__ID(){
         //-------------------------------------
-        VmInclude:__BASE__/vmiis/Common-Code/style/ease-in-out.js
+        $('#a1__ID').on('click',function(){
+            $vm.nav_load_module('panel_main_projects');
+        })
         //-------------------------------------
-        $('#D__ID').on('load',function(){})
+        $('#a2__ID').on('click',function(){
+            $vm.nav_signout()
+        })
         //-------------------------------------
-        $('#back__ID').on('click',function(event){
-              event.stopPropagation();
-              var A='woolcock_volunteer_database_';
-              $vm.load_module_by_name(A+'navigation',$vm.root_layout_content_slot,{})
-        });
-        //-------------------------------------
+        $('#D__ID').on('load',function(){
+        })
     }
 </script>
 <style>
-    VmInclude:__BASE__/vmiis/Common-Code/style/default.css
-    VmInclude:__BASE__/vmiis/Common-Code/style/form.css
+	#D__ID{
+		height:100%;
+        overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
+	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>
