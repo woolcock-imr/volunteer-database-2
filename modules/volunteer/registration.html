@@ -183,6 +183,14 @@
             var req={cmd:"s1_s2_exist",db_pid:'20008533',s1:dbv.S1,s2:dbv.S2};
             $VmAPI.request({data:req,callback:function(res){
                 if(res.ret==='0'){
+					dbv.DT1=$('#Year_of_Birth__ID').val()+"-01-01";
+				   	dbv.B1=record.Medical_Research;
+				   	var g1=0; if(record.Gender=='Male') g1=1;
+				   	var g2=0; if(record.Gender=='Female') g2=1;
+				   	var s=parseInt(record.Asthma)+2*parseInt(record.COPD)+4*parseInt(record.Chronic_Bronchitis)+8*parseInt(record.Emphysema)+16*parseInt(record.Rhintis);
+				   	s+=32*parseInt(record.Lung_Cancer)+64*parseInt(record.Insomnia)+128*parseInt(record.Narcolepsy)+256*parseInt(record.OSA)+512*parseInt(record.RLS)+1024*parseInt(g1)+2048*parseInt(g2);
+				   	dbv.V1=s;
+				   	dbv.V2=record.Postcode;
                     var req={cmd:"add_record",db_pid:'20008533',data:record,dbv:dbv}; //geust can add
                     $VmAPI.request({data:req,callback:function(res){
                         send_email();
