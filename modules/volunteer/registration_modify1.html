@@ -161,9 +161,13 @@
                     $vm.alert("Year of Birth is compulsory");
                     return;
                 }
-                var re=/^(\d{4})$/;
+				if((new Date).getFullYear()-parseInt($('#Year_of_Birth__ID').val())<18){
+					$vm.alert("Sorry, minimum age is 18");
+					return;
+				}
+				var re=/^(19\d\d|20[0-1]\d)$/;
                 if(re.test($('#Year_of_Birth__ID').val())===false){
-                    $vm.alert("Year of Birth: 4 digits please");
+					$vm.alert("Year of Birth: 19nn to 20nn");
                     return;
                 }
             }

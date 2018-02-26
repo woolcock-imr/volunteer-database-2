@@ -152,12 +152,15 @@
                     $vm.alert("Year of Birth is compulsory");
                     return;
                 }
-                var re=/^(\d{4})$/;
+				if((new Date).getFullYear()-parseInt($('#Year_of_Birth__ID').val())<18){
+					$vm.alert("Sorry, minimum age is 18");
+					return;
+				}
+				var re=/^(19\d\d|20[0-1]\d)$/;
                 if(re.test($('#Year_of_Birth__ID').val())===false){
-                    $vm.alert("Year of Birth: 4 digits please");
+					$vm.alert("Year of Birth: 19nn to 20nn");
                     return;
                 }
-
             }
             if($('#Email__ID').val()===''){
                 $vm.alert("Email is compulsory");
@@ -194,15 +197,6 @@
                     var req={cmd:"add_record",db_pid:'20008533',data:record,dbv:dbv}; //geust can add
                     $VmAPI.request({data:req,callback:function(res){
                         send_email();
-                        if($('#Newsletters__ID').is(':checked')==true & $('#Medical_Research__ID').is(':checked')==false){
-                            $vm.load_module_by_name('woolcock_volunteer_database_thankyou',$vm.root_layout_content_slot,{});
-                        }
-                        else{
-                            //copy username and password to the signin section and trigger a click
-                            $('#username__ID').val($('#Email__ID').val());
-                            $('#password__ID').val($('#Registration_Password__ID').val());
-                            $('#signin__ID').triggerHandler('click');
-                        }
                     }});
                 }
                 else{
@@ -231,7 +225,14 @@
             $VmAPI.request({data:{cmd:'send_email',From_Address:From_Address,From_Name:From_Name,To:To,Title:Title,Body:Body},callback:function(res){
                 //alert('Email to: '+$('#Email__ID').val()+' has been sent');
 				//if($vm.module_afetr_signin!=undefined && $vm.module_afetr_signin!='') $vm.nav_load_module($vm.module_afetr_signin);
-				$vm.nav_load_module('panel_main_signin');
+				if($('#Newsletters__ID').is(':checked')==true & $('#Medical_Research__ID').is(':checked')==false){
+					$vm.nav_load_module('panel_main_registration_thanks');
+				}
+				else{
+					//copy username and password to the signin section and trigger a click
+					$vm.nav_load_module('panel_main_signin',$vm.root_layout_content_slot,{email:$('#Email__ID').val(),pw:$('#Registration_Password__ID').val()});
+				}
+
             }})
 
         }

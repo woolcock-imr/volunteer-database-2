@@ -1,26 +1,66 @@
-<section>
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:700px'>
+		<div class="text-center panel__ID">
+			<h2>        Thank you for your registration.<br>
+                        You have now signed up to receive our newsletter and other information. If you want to unsubscribe Sign in and untick the box.
+			</h2>
+			<button id=a1__ID class="btn btn-primary">Research Studies</button><br><br>
+            <button id=a2__ID class="btn btn-primary">Sign In</button>
+		</div>
+	</div>
+</div>
+<!--<section>
     <div id=toolbar__ID>
           <a id=back__ID>Back</a>
     </div>
     <hr><br><br>
         <div style='width:620px;margin-left:auto;margin-right:auto;font-size:20pt;text-align:center';>
-            Thank you for your registration.
-            <div style='text-align:center;font-size:15pt;'>            <br>
-                You have now signed up to receive our newsletter and other information. If you want to unsubscribe Sign in and untick the box.<br>
-                <a href='https://rt.woolcock.org.au/volunteer-database.html' target='_blank'>Woolcock Institute of Medical Research - Vounteer Database</a></div>
-
+            Your record has been modified.<br>
+            Thank you for keeping your record up to date.
     </div>
-</section>
+</section>-->
+
 <script>
     function F__ID(){
         //-------------------------------------
-        VmInclude:__BASE__/vmiis/Common-Code/style/ease-in-out.js
+        $('#a1__ID').on('click',function(){
+            $vm.nav_load_module('panel_main_projects');
+        })
         //-------------------------------------
-        $('#D__ID').on('load',function(){})
+        $('#a2__ID').on('click',function(){
+            $vm.nav_load_module('panel_main_signin');
+        })
         //-------------------------------------
+        $('#D__ID').on('load',function(){
+        })
     }
 </script>
 <style>
-    VmInclude:__BASE__/vmiis/Common-Code/style/default.css
-    VmInclude:__BASE__/vmiis/Common-Code/style/form.css
+	#D__ID{
+		height:100%;
+        overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
+	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
 </style>

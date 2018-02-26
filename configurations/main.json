@@ -8,7 +8,7 @@
 		"my_details":	  {"url":"/modules/volunteer/registration_modify1.html"},
 
 		"get_password":         			{"url":"/modules/volunteer/get_password.html"},
-
+		"registration_thanks":             {"table_id":"--------","url":"/modules/volunteer/registration_thanks.html"},
 		"registration_modify":             {"table_id":"20008533","url":"/modules/volunteer/forms/registration_modify1.html"},
 		"registration_modification_thanks":{"table_id":"","url":"/modules/volunteer/registration_modification_thanks.html"},
 		"projects_novelstart":             {"table_id":"20009539","url":"/modules/projects/novelstart/novelstart.html"},
