@@ -26,6 +26,7 @@
 		"projects_healthy_sleep":          {"table_id":"20009665","url":"/modules/projects/healthy_sleep/healthy_sleep.html"},
 		"projects_dreams_sleep":           {"table_id":"20009666","url":"/modules/projects/dreams_sleep/dreams_sleep.html"},
 		"projects_moderate":               {"table_id":"20009693","url":"/modules/projects/moderate/moderate.html"},
+		"projects_hdeegmci":               {"table_id":"--------","url":"/modules/projects/hdeegmci/hdeegmci.html"},
 		"projects_windfarm":               {"table_id":"--------","url":"/modules/projects/windfarm/windfarm.html"},
 		"projects_windfarm_thanks":        {"table_id":"--------","url":"/modules/projects/windfarm/thanks.html"},
 		"projects_thanks":                 {"table_id":"","url":"/modules/projects/thanks.html"}
