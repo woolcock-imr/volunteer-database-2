@@ -216,11 +216,18 @@
             var From_Name="Woolcock Institute of Medical Research";
             var To=$('#Email__ID').val();
             var Title="Registration";
-            var Body="Thank you for registering and welcome to the Woolcock family!<br><br>";
-            Body+="You can update your details at any time by visiting <a href='https://rt.woolcock.org.au/volunteer-database.html'>https://rt.woolcock.org.au/volunteer-database.html</a><br><br>";
-            Body+="For more information about Woolcock please visit our website.<br>";
-            Body+='<a href="http://woolcock.org.au/">woolcock.org.au</a><br><br>';
-            Body+='<p class=MsoNormal><a href="http://woolcock.org.au/"><b><span style="font-family:"Arial","sans-serif";color:#E31937;text-decoration:none"><img border=0 width=262 id="Picture 6" src="http://static1.squarespace.com/static/515ba920e4b0afec12175c59/t/524a1887e4b05a2438113f89/1452662918547/?format=262w"></span></b></a></p>';
+			var Body="Thank you for agreeing to volunteer to participate in research at the Woolcock Institute of Medical Research.<br><br>"
+            Body+="If you need to contact us in relation to the information we hold about you please call 02 9114 0412 or email admin@woolcock.org.au.<br><br>"
+            Body+="The information you have provided to us has been added to our Volunteer Database. We have asked you for the minimum amount of information we need to identify if you might be eligible for a project.<br><br>"
+            Body+="The Woolcock is a world-class network of specialised researchers and clinicians who deal with the causes, prevention, diagnosis and treatment of respiratory disease and sleep disorders. We use the database to recruit volunteers for research projects.<br><br>"
+            Body+="Woolcock researchers who have been granted permission to use the database will search according to the criteria of their project to identify suitable volunteers. If you are selected a researcher will contact you directly. They may ask you further questions to identify if you are eligible for that project. At any time in the process you can withdraw or decline to participate in any particular project or ask to be removed from the database.<br><br>"
+            Body+="We will not disclose the information on the Volunteer Database to anyone other than Woolcock researchers with an approved project that is being conducted under the supervision of the Woolcock. All projects will have been approved by a properly constituted ethic committee and will be conducted under the Australian Code for Responsible Conduct of Research published by the NHMRC.<br><br>"
+            Body+="To view the Woolcock’s Privacy Policy Visit Woolcock.org.au.<br><br>"
+            Body+="You can update your details at any time by visiting <a href='https://volunteer-database.rt.org.au/'>https://volunteer-database.rt.org.au/</a><br><br>";
+            Body+="Thank you again for volunteering to help us in our research.<br><br>"
+            Body+="Professor Carol Armour<br>"
+            Body+="Executive Director<br>"
+            Body+="Woolcock Institute of Medical Research<br>"
             $VmAPI.request({data:{cmd:'send_email',From_Address:From_Address,From_Name:From_Name,To:To,Title:Title,Body:Body},callback:function(res){
                 //alert('Email to: '+$('#Email__ID').val()+' has been sent');
 				//if($vm.module_afetr_signin!=undefined && $vm.module_afetr_signin!='') $vm.nav_load_module($vm.module_afetr_signin);
