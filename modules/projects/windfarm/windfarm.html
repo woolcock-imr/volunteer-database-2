@@ -34,7 +34,7 @@
         var project_name='windfarm';
         //--------------------------------------------
         var goto_thanks=function(){
-			$vm.nav_load_module('panel_main_projects_windfarm_thanks');
+			$vm.nav_load_module('panel_main_projects_thanks');
         }
         //--------------------------------------------
         var join_project=function(){
@@ -78,7 +78,7 @@
             }})
         }
         //--------------------------------------------
-		$('#submit__ID').on('click',function(){
+        $('#submit__ID').on('click',function(){
 			if($vm.user=="guest"){
 				$vm.module_afetr_signin=$vm.vm['__ID'].name;
 				$vm.nav_load_module("panel_main_signin");
