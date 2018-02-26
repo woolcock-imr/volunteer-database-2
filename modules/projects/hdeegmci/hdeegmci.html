@@ -1,0 +1,143 @@
+<div id=page__ID>
+	<div id=panel__ID class="container" style='max-width:1200px'>
+        <form id=F__ID >
+    		<div class="text-left panel__ID">
+                <div class="row">
+      			  <div class="col-sm-8">
+                    <h3 class="">Exploring the links between poor sleep, memory impairment and cognitive decline</h3>
+                    <h2></h2>
+                    <h4>Purpose and Background
+                    </h4>
+					<p>Sleep is important for learning and memory processes and disrupted sleep may underlie changes in cognitive functions that occur with older age including memory impairment. As part of this study your sleep and wake brain activity will be recorded using high-density electroencephalography (hdEEG). You will also complete cognitive tasks before and after sleep. We will examine changes in sleep and wake brain activity patterns and how these may relate to cognitive functions including memory. We aim to identify predictors of cognitive decline and examine how poor sleep may affect cognitive changes over time.<br><br>
+					High-density EEG is a non-invasive technique that uses a special sensor net worn on the head to record detailed brain activity during sleep and wakefulness from 256 electrode sites. We will use this new technology to examine brain waves during sleep to understand the impact of altered sleep neurophysiology on cognition<br><br>
+					The <u><a href="images/PIS Poor sleep and cognitive decline.pdf"  target="_blank" >Participant Information Statement</a></u> tells you about the research study. Knowing what is involved will help you decide if you want to take part in the research. Please read this sheet carefully and ask questions about anything that you don’t understand or want to know more about.
+				</p>
+				<h4>Who can take part in the study?
+				</h4>
+				<p>Individuals aged 50 to 90 years are invited to participate in this study either as <br>
+-	a healthy control participant; or<br>
+-	someone who has reported new changes in their cognition that are not due to a pre-existing medical or psychiatric condition (subjective memory complaints); or <br>
+-	someone who has received a confirmed diagnosis of amnestic or non-amnestic multi-domain mild cognitive impairment (MCI).
+<br><br>
+You will not be able to participate in this study if you:<br>
+–	do not have English as a primary language;<br>
+–	have other major neurological problems (e.g. stroke, epilepsy, head injury);<br>
+–	have a severe mental health disorder (e.g. schizophrenia, bipolar disorder); <br>
+–	have a current diagnosis of major depression<br>
+–	have any other serious medical conditions, such as cancer;<br>
+–	are regularly taking sleep-affecting medication including benzodiazepines, sedative hypnotics, antipsychotics, antidepressants;<br>
+–	are a shift worker or have travelled overseas within the last 2 weeks; <br>
+–	have a diagnosis of dementia<br>
+<br>
+			</p>
+                    <h4>
+						<i>Email:</i> carla.haroutonian@sydney.edu.au<br>
+						<i>Phone:</i> 02 9114 0491
+                        <br><i>Contact name:</i> Ms Carla Haroutonian, Study Coordinator
+
+                    </h4>
+					<br><i>Chief Investigator:</i> Dr Angela D’Rozario<br>
+                    <br><i>Ethics approvals:</i>The ethical aspects of this study have been approved by the HREC of the University of Sydney [Protocol No. 2016_1019]. Short Title of Study: Poor sleep and cognitive decline in at-risk dementia
+					<br><br>
+                </div>
+                <div class="col-sm-4">
+                    <img class=".img-fluid rounded" style='max-width:100%' src="images/hdeegmci.jpg"  ><img>
+              </div>
+    		</div>
+			<input class="btn btn-primary" type=button id=submit__ID value="Click here to participate in the study" />
+        </form>
+	</div>
+</div>
+<script>
+    function F__ID(){
+        //--------------------------------------------
+        var A='woolcock_volunteer_database_';
+        var project_name='hdeegmci';
+        //--------------------------------------------
+        var goto_thanks=function(){
+			$vm.nav_load_module('panel_main_projects_thanks');
+        }
+        //--------------------------------------------
+        var join_project=function(){
+            var req={cmd:'query_records_s2',db_pid:'20009681',fields:'ID',where:"S1='"+project_name+"'"}      //check joined or not
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.records.length>0){
+                    goto_thanks();
+                }
+                else{
+                    $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
+                        if(res.records.length>0){
+                            var record={
+                                Volunteer:res.records[0].First_Name+' '+res.records[0].Last_Name,
+                                Login_Email:res.records[0].Email,
+                                Project:project_name,
+                                Status:'Registration',
+                            };
+                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
+                            var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
+                            $VmAPI.request({data:req,callback:function(res){
+                                goto_thanks();
+                            }});
+                        }
+                    }})
+                    //----------------------
+                    //sending email
+                    var req={cmd:"query_records",sql:"select Information from [TABLE-20009716] where @('Project_Name')='"+project_name+"' "};
+                    $VmAPI.request({data:req,callback:function(res){
+                        if(res.records.length>0){
+                            var contact_email=res.records[0].Contact_Email;
+                            if(contact_email!=''){
+                                $VmAPI.request({data:{cmd:'send_email',From_Address:'noresponse@woolcock.org.au',From_Name:'Database Administrator',To:contact_email,
+                                    Title:"Research participation",
+                                    Body:"A volunteer has shown interest in your study; "+project_name+"."},callback:function(res){
+                                }})
+                            }
+                        }
+                    }})
+                    //----------------------
+                }
+            }})
+        }
+        //--------------------------------------------
+        $('#submit__ID').on('click',function(){
+			if($vm.user=="guest"){
+				$vm.module_afetr_signin=$vm.vm['__ID'].name;
+				$vm.nav_load_module("panel_main_signin");
+			}
+			else{
+				join_project();
+			}
+            //join_project();
+        })
+		//--------------------------------------------
+    }
+</script>
+<style>
+	#D__ID{
+		height:100%;
+        overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
+	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		/*align-items: center;*/
+	}
+	.panel__ID{
+		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
+</style>
