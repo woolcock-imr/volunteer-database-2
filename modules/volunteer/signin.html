@@ -6,7 +6,7 @@
             Please volunteer to take part in a research project, help us to help you and others.<br>
             <br>
 			</h6>
-			<button id=a2__ID class="btn btn-primary">If you are NOT a<br>volunteer please REGISTER here</button>
+			<button id=a2__ID class="btn btn-warning">If you are NOT yet registered<br>please REGISTER here</button>
     	  	  <hr style='border-top:1px solid #fff;'></hr>
               <div class="">
                   <input class="form-control" id=username__ID type=text placeholder="Email"  />
@@ -32,6 +32,11 @@
         })
         //-------------------------------------
         $('#D__ID').on('load',function(){
+			if($vm.vm['__ID'].op.input!=undefined){
+				$('#username__ID').val($vm.vm['__ID'].op.input.email)
+				$('#password__ID').val($vm.vm['__ID'].op.input.pw)
+				$('#signin__ID').triggerHandler('click');
+			}
         })
         //-------------------------------------
         $('#signin__ID').on('click',function(){

@@ -201,9 +201,9 @@
                     $vm.alert("Year of Birth is compulsory");
                     return;
                 }
-                var re=/^(\d{4})$/;
+				var re=/^(19\d\d|2000[0-1]\d)$/;
                 if(re.test($('#Year_of_Birth__ID').val())===false){
-                    $vm.alert("Year of Birth: 4 digits please");
+                    $vm.alert("Year of Birth: 19nn to 20nn");
                     return;
                 }
             }
