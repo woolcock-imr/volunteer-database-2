@@ -30,6 +30,8 @@
 		"projects_windfarm":               {"table_id":"--------","url":"/modules/projects/windfarm/windfarm.html"},
 		"projects_windfarm_thanks":        {"table_id":"--------","url":"/modules/projects/windfarm/thanks.html"},
 		"projects_normative":        	   {"table_id":"--------","url":"/modules/projects/normative/normative.html"},
-		"projects_thanks":                 {"table_id":"","url":"/modules/projects/thanks.html"}
+		"projects_thanks":                 {"table_id":"","url":"/modules/projects/thanks.html"},
+
+		"mailing":                 {"table_id":"91000082","url":"/modules/volunteer/mailing.html"}
 	}
 }

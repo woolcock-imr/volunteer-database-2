@@ -45,7 +45,8 @@
                           </ul>
                       </div>
     			  </div>
-              </div>
+			  </div>
+			  <div><u style='cursor:pointer' id=mailing__ID>I would like to receive updates, including the latest medical findings and break-throughs in respiratory and sleep research, from the Woolcock Institute</u></div>
 		</div>
 	</div>
 </div>
@@ -76,6 +77,9 @@ function F__ID(){
 	//--------------------------------------------------------
 	//Vm Include:__CURRENT_PATH__/check-link.js
 	//--------------------------------------------------------
+	$('#mailing__ID').on('click',function(){
+		$vm.nav_load_module(prefix+'mailing','',{});
+	})
 
 }
 </script>
