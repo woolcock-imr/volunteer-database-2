@@ -1,190 +1,75 @@
 <div id=page__ID>
 	<div id=panel__ID class="container-fluid" style='max-width:1000px'>
-		<div class="text-left panel__ID">
-			<h3>Contact information</h3>
-    	  	  <hr style='border-top:1px solid #fff;'></hr>
-              <div class="row row__ID">
-                  <div class="col-sm control-group" >
-                      Email
-                      <input class="form-control" type=email id=Email__ID placeholder='Email' />
-                      First Name
-                      <input type="text" class="form-control" id="First_Name__ID" name="First_Name__ID" placeholder="First Name">
-                      Last Name
-                      <input type="text" class="form-control" id="Last_Name__ID" name="Last_Name__ID" placeholder="Last Name">
-                      Phone
-                      <input type="text" class="form-control" id=Phone__ID name="Phone__ID" placeholder="Phone">
-                  </div>
-              </div>
-			  <br>
-			  <span style='font-size:80%'>I would like to receive updates, including the latest medical findings and break-throughs in respiratory and sleep research, from the Woolcock Institute</span>
-			  <br>
-			  <br>
-			  <input class="btn btn-primary btn-lg" type=button id=submit__ID value="Submit" />
-		</div>
-        <div style='text-align:center;font-size:8pt'>
-            <br>
-            The Woolcock Institute of Medical Research recognises the importance of your personal information and privacy. <br>
-            We will use your provided details only to contact you about information we believe will be of interest to you. <br>
-            <a href="https://static1.squarespace.com/static/515ba920e4b0afec12175c59/t/59f019fa29f187a715e74ca6/1508907516135/PrivacyPolicy.pdf" target="_blank" >Click here to read our full Privacy Policy.</a>
-        </div>
+		<form id=F__ID>
+			<div class="text-left panel__ID">
+				<h3>Contact information</h3>
+	    	  	  <hr style='border-top:1px solid #fff;'></hr>
+	              <div class="row row__ID">
+	                  <div class="col-sm control-group" >
+	                      Email
+	                      <input class="form-control" type=email name=Email placeholder='Email' required />
+	                      First Name
+	                      <input type="text" class="form-control" name="First_Name" placeholder="First Name" required>
+	                      Last Name
+	                      <input type="text" class="form-control" name="Last_Name" placeholder="Last Name"  required>
+	                      Phone
+	                      <input type="text" class="form-control" name="Phone" placeholder="Phone">
+	                  </div>
+	              </div>
+				  <br>
+				  <span style='font-size:80%'>I would like to receive updates, including the latest medical findings and break-throughs in respiratory and sleep research, from the Woolcock Institute</span>
+				  <br>
+				  <br>
+				  <input class="btn btn-primary btn-lg" type=submit id=submit__ID value="Submit" />
+			</div>
+	        <div style='text-align:center;font-size:8pt'>
+	            <br>
+	            The Woolcock Institute of Medical Research recognises the importance of your personal information and privacy. <br>
+	            We will use your provided details only to contact you about information we believe will be of interest to you. <br>
+	            <a href="https://static1.squarespace.com/static/515ba920e4b0afec12175c59/t/59f019fa29f187a715e74ca6/1508907516135/PrivacyPolicy.pdf" target="_blank" >Click here to read our full Privacy Policy.</a>
+	        </div>
+		</form>
 	</div>
-
 </div>
 <script>
     function F__ID(){
         //----------------------------------------
         $('#D__ID').on('load',function(){
-            //$('#F__ID')[0].reset();
+            $('#F__ID')[0].reset();
+			$('#submit__ID').show();
         })
         //-------------------------------------
-        $('#submit__ID').on('click',function(){
-            var record={}
-            record.First_Name=$('#First_Name__ID').val();
-            record.Last_Name=$('#Last_Name__ID').val();
-            record.Phone=$('#Phone__ID').val();
-            record.Postcode=$('#Postcode__ID').val();
-            record.Email=$('#Email__ID').val();
-            record.Gender=$('#Gender__ID').val();
-            record.Year_of_Birth=$('#Year_of_Birth__ID').val();
-
-            if($('#Asthma__ID').is(':checked'))             record.Asthma="1"; else record.Asthma='0'
-            if($('#COPD__ID').is(':checked'))               record.COPD="1"; else record.COPD='0'
-            if($('#Chronic_Bronchitis__ID').is(':checked')) record.Chronic_Bronchitis="1"; else record.Chronic_Bronchitis='0'
-            if($('#Emphysema__ID').is(':checked'))          record.Emphysema="1"; else record.Emphysema='0'
-            if($('#Rhintis__ID').is(':checked'))            record.Rhintis="1"; else record.Rhintis='0'
-            if($('#Lung_Cancer__ID').is(':checked'))        record.Lung_Cancer="1"; else record.Lung_Cancer='0'
-            if($('#Insomnia__ID').is(':checked'))           record.Insomnia="1"; else record.Insomnia='0'
-            if($('#Narcolepsy__ID').is(':checked'))         record.Narcolepsy="1"; else record.Narcolepsy='0'
-            if($('#OSA__ID').is(':checked'))                record.OSA="1"; else record.OSA='0'
-            if($('#RLS__ID').is(':checked'))                record.RLS="1"; else record.RLS='0'
-            if($('#Medical_Research__ID').is(':checked'))   record.Medical_Research="1"; else record.Medical_Research='0'
-            if($('#Newsletters__ID').is(':checked'))        record.Newsletters="1"; else record.Newsletters='0'
-            if($('#Medical_Research__ID').is(':checked')==true) {
-                if($('#First_Name__ID').val()===''){
-                    $vm.alert("First Name is compulsory");
-                    return;
-                }
-                if($('#Last_Name__ID').val()===''){
-                    $vm.alert("Last Name is compulsory");
-                    return;
-                }
-                if($('#Phone__ID').val()===''){
-                    $vm.alert("Phone is compulsory");
-                    return;
-                }
-                if($('#Postcode__ID').val()===''){
-                    $vm.alert("Postcode is compulsory");
-                    return;
-                }
-                var re=/^(\d{4})$/;
-                if(re.test($('#Postcode__ID').val())===false){
-                    $vm.alert("Post code: 4 digits Please");
-                    return;
-                }
-                if($('#Gender__ID').val()===''){
-                    $vm.alert("Gender is compulsory");
-                    return;
-                }
-                if($('#Year_of_Birth__ID').val()===''){
-                    $vm.alert("Year of Birth is compulsory");
-                    return;
-                }
-				if((new Date).getFullYear()-parseInt($('#Year_of_Birth__ID').val())<18){
-					$vm.alert("Sorry, minimum age is 18");
-					return;
-				}
-				var re=/^(19\d\d|20[0-1]\d)$/;
-                if(re.test($('#Year_of_Birth__ID').val())===false){
-					$vm.alert("Year of Birth: 19nn to 20nn");
-                    return;
-                }
-            }
-            if($('#Email__ID').val()===''){
-                $vm.alert("Email is compulsory");
-                return;
-            }
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if(re.test($('#Email__ID').val())===false){
-                $vm.alert("Invalid email format");
-                return;
-            }
-            if($('#Registration_Password__ID').val()===''){
-                $vm.alert("Password is compulsory");
-                return;
-            }
-            if($('#Medical_Research__ID').is(':checked')==false && $('#Newsletters__ID').is(':checked')==false){
-                $vm.alert("Please select one or both of the check boxes at the top of the registration page.  This gives us your consent to send a newsletter or contact you about our research.");
-                return;
-            };
-            var dbv={};
-            dbv.S1=$('#Email__ID').val();
-            dbv.S2=$('#Email__ID').val();
-            dbv.ES3=$('#Registration_Password__ID').val();
-            var req={cmd:"s1_s2_exist",db_pid:'20008533',s1:dbv.S1,s2:dbv.S2};
-            $VmAPI.request({data:req,callback:function(res){
-                if(res.ret==='0'){
-					dbv.DT1=$('#Year_of_Birth__ID').val()+"-01-01";
-				   	dbv.B1=record.Medical_Research;
-				   	var g1=0; if(record.Gender=='Male') g1=1;
-				   	var g2=0; if(record.Gender=='Female') g2=1;
-				   	var s=parseInt(record.Asthma)+2*parseInt(record.COPD)+4*parseInt(record.Chronic_Bronchitis)+8*parseInt(record.Emphysema)+16*parseInt(record.Rhintis);
-				   	s+=32*parseInt(record.Lung_Cancer)+64*parseInt(record.Insomnia)+128*parseInt(record.Narcolepsy)+256*parseInt(record.OSA)+512*parseInt(record.RLS)+1024*parseInt(g1)+2048*parseInt(g2);
-				   	dbv.V1=s;
-				   	dbv.V2=record.Postcode;
-                    var req={cmd:"add_record",db_pid:'20008533',data:record,dbv:dbv}; //geust can add
-                    $VmAPI.request({data:req,callback:function(res){
-                        send_email();
-                    }});
-                }
-                else{
-                    alert('The username or email already exists.')
-                }
-            }});
-        })
-        //-------------------------------------
-        var send_email=function(){
-            var From_Address="noresponse@woolcock.org.au";
-            var From_Name="Woolcock Institute of Medical Research";
-            var To=$('#Email__ID').val();
-            var Title="Registration";
-			var Body="Thank you for agreeing to volunteer to participate in research at the Woolcock Institute of Medical Research.<br><br>"
-            Body+="If you need to contact us in relation to the information we hold about you please call 02 9114 0412 or email admin@woolcock.org.au.<br><br>"
-            Body+="The information you have provided to us has been added to our Volunteer Database. We have asked you for the minimum amount of information we need to identify if you might be eligible for a project.<br><br>"
-            Body+="The Woolcock is a world-class network of specialised researchers and clinicians who deal with the causes, prevention, diagnosis and treatment of respiratory disease and sleep disorders. We use the database to recruit volunteers for research projects.<br><br>"
-            Body+="Woolcock researchers who have been granted permission to use the database will search according to the criteria of their project to identify suitable volunteers. If you are selected a researcher will contact you directly. They may ask you further questions to identify if you are eligible for that project. At any time in the process you can withdraw or decline to participate in any particular project or ask to be removed from the database.<br><br>"
-            Body+="We will not disclose the information on the Volunteer Database to anyone other than Woolcock researchers with an approved project that is being conducted under the supervision of the Woolcock. All projects will have been approved by a properly constituted ethic committee and will be conducted under the Australian Code for Responsible Conduct of Research published by the NHMRC.<br><br>"
-            Body+="To view the Woolcock’s Privacy Policy Visit Woolcock.org.au.<br><br>"
-            Body+="You can update your details at any time by visiting <a href='https://volunteer-database.rt.org.au/'>https://volunteer-database.rt.org.au/</a><br><br>";
-            Body+="Thank you again for volunteering to help us in our research.<br><br>"
-            Body+="Professor Carol Armour<br>"
-            Body+="Executive Director<br>"
-            Body+="Woolcock Institute of Medical Research<br>"
-            $VmAPI.request({data:{cmd:'send_email',From_Address:From_Address,From_Name:From_Name,To:To,Title:Title,Body:Body},callback:function(res){
-                //alert('Email to: '+$('#Email__ID').val()+' has been sent');
-				//if($vm.module_afetr_signin!=undefined && $vm.module_afetr_signin!='') $vm.nav_load_module($vm.module_afetr_signin);
-				if($('#Newsletters__ID').is(':checked')==true & $('#Medical_Research__ID').is(':checked')==false){
-					$vm.nav_load_module('panel_main_registration_thanks');
-				}
-				else{
-					//copy username and password to the signin section and trigger a click
-					$vm.nav_load_module('panel_main_signin',$vm.root_layout_content_slot,{email:$('#Email__ID').val(),pw:$('#Registration_Password__ID').val()});
-				}
-
-            }})
-
-        }
+		$('#F__ID').submit(function(event){
+			alert(1)
+			//--------------------------------------------------------
+			event.preventDefault();
+			$('#submit__ID').hide();
+			//--------------------------------------------------------
+			var data={}; var a=$("#F__ID").serializeArray(); $.each(a, function () {	data[this.name]=this.value || '';});
+			var dbv={}
+			var db_pid=$vm.module_list[$vm.vm["__ID"].name].table_id;
+			//--------------------------------------------------------
+			var req={cmd:"add_json_record",db_pid:db_pid,data:data,dbv:dbv};
+			$VmAPI.request({data:req,callback:function(res){
+				if(res.ret<=0)	$vm.alert("Sorry there is a problem. You can try again later.");
+				else $vm.alert('Thank you. Your information has been successfully submitted');
+			}});
+			//--------------------------------------------------------
+		})
+		//--------------------------------------------------------
     }
 </script>
 <style>
-#D__ID{
-	height:100%;
-	overflow:auto;
-	animation: vm_module_fadein 1.0s;
-	background:rgba(255,255,255,0.2);
-}
+	#D__ID{
+		height:100%;
+		overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
+	}
 	#page__ID{
 		height:100%;
-		display: flex;
+		/*display: flex;*/
+		padding-top:50px;
 		align-items: center;
 	}
 	.panel__ID{
