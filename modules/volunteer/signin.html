@@ -65,7 +65,8 @@
 					else $vm.nav_load_module('panel_main_my_details');
                 }
                 else{
-                    $('#ErrMsg__ID').text("Invalid username or password.")
+                    //$('#ErrMsg__ID').text("Invalid username or password or perhaps you haven't registered. Click on yellow button above for Registration")
+					$vm.alert("Invalid username or password or perhaps you haven't registered. Click on yellow button for Registration");
                 }
             }})
         })
