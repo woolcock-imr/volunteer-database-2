@@ -4,24 +4,35 @@
     		<div class="text-left panel__ID">
                 <div class="row">
       			  <div class="col-sm-8">
-                    <h1 class="display-4">HOW IS YOUR COPD AFFECTED BY SLEEP DISTURBANCES?</h1>
-                    <h2></h2>
-                    <h4>We are looking for volunteers with COPD to determine the relationship between breathing and sleep disturbances. This study involves consult with a lung physician, breathing assessments, and a sleep study.
-                    </h4>
-                    <p class"lead">Do you want to participate in this study?</p>
-                    <h4>
-						<i>Email:</i> circomed@woolcock.org.au
-                        <br><i>Contact name:</i> Kieran Patel
-
-                    </h4>
-					<br><i>Chief Investigator:</i> Professor Greg King
-                    <br><i>Ethics approvals:</i> Bellberry Human research ethics committee
+                    <h1>DO YOU HAVE ASTHMA? ARE YOU USING A REGULAR PREVENTER?</h1>
+					<br>
+					<b>WHAT IT INVOLVES:</b>
+					<ul>
+						<li>Breathing into a simple device yourself once daily at home for 2-6 months</li>
+						<li>2-3 one-hour clinic visits at the Woolcock Institute in Glebe, Concord Hospital or Royal North Shore Hospital</li>
+						<li>No changes to your usual care by your treating physician</li>
+						<li>Regular monitoring of your disease</li>
+					</ul>
+					Interested? Talk to your doctor or contact one of the study investigators at (02) 9114 0146 or
+					asthma@woolcock.org.au
+					<br>
+					<br>
+					Chief Investigator: Dr. Cindy Thamrin
+					<br>
+					Contact name: Kieran Patel/Tanya Badal
+					<br>
+					Contact details (email or phone number): asthma@woolcock.org.au or (02) 9114 0146
+					<br>
+					Details of ethics approvals: HREC/17/CRGH/177
+					<br>
+					<br>
                 </div>
                 <div class="col-sm-4">
-                    <img class=".img-fluid rounded" style='max-width:100%' src="images/circomed.jpg"  ><img>
+                    <img class=".img-fluid rounded" style='max-width:100%' src="images/home_monitoring_study.jpg"  ><img>
               </div>
     		</div>
 			<input class="btn btn-primary" type=button id=submit__ID value="Click here to participate in the study" />
+			<br>
         </form>
 	</div>
 </div>
@@ -29,7 +40,7 @@
     function F__ID(){
         //--------------------------------------------
         var A='woolcock_volunteer_database_';
-        var project_name='circomed';
+        var project_name='home_monitoring_study';
         //--------------------------------------------
         var goto_thanks=function(){
 			$vm.nav_load_module('panel_main_projects_thanks');
@@ -42,6 +53,7 @@
                     goto_thanks();
                 }
                 else{
+					//select ID,UID,Information from [TABLE-20008533] where 'system_20008533_'+S2=@S6
                     $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
                         if(res.records.length>0){
                             var record={
@@ -50,28 +62,28 @@
                                 Project:project_name,
                                 Status:'Registration',
                             };
-                            var dbv={S1:project_name,S3:'Registration',PUID:$vm.user_id};
+                            var dbv={S1:project_name,PUID:$vm.user_id};
                             var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
                             $VmAPI.request({data:req,callback:function(res){
                                 goto_thanks();
                             }});
+							//----------------------
+		                    //sending email
+		                    var req={cmd:"query_records",sql:"select Information from [TABLE-20009716] where @('Project_Name')='"+project_name+"' "};
+		                    $VmAPI.request({data:req,callback:function(res){
+		                        if(res.records.length>0){
+		                            var contact_email=res.records[0].Contact_Email;
+		                            if(contact_email!=''){
+		                                $VmAPI.request({data:{cmd:'send_email',From_Address:'noresponse@woolcock.org.au',From_Name:'Database Administrator',To:contact_email,
+		                                    Title:"Research participation",
+		                                    Body:"A volunteer has shown interest in your study; "+project_name+"."},callback:function(res){
+		                                }})
+		                            }
+		                        }
+		                    }})
+		                    //----------------------
                         }
                     }})
-                    //----------------------
-                    //sending email
-                    var req={cmd:"query_records",sql:"select Information from [TABLE-20009716] where @('Project_Name')='"+project_name+"' "};
-                    $VmAPI.request({data:req,callback:function(res){
-                        if(res.records.length>0){
-                            var contact_email=res.records[0].Contact_Email;
-                            if(contact_email!=''){
-                                $VmAPI.request({data:{cmd:'send_email',From_Address:'noresponse@woolcock.org.au',From_Name:'Database Administrator',To:contact_email,
-                                    Title:"Research participation",
-                                    Body:"A volunteer has shown interest in your study; "+project_name+"."},callback:function(res){
-                                }})
-                            }
-                        }
-                    }})
-                    //----------------------
                 }
             }})
         }
@@ -84,7 +96,6 @@
 			else{
 				join_project();
 			}
-            //join_project();
         })
 		//--------------------------------------------
     }
