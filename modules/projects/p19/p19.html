@@ -1,0 +1,136 @@
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:1200px'>
+        <form id=F__ID >
+    		<div class="text-left panel__ID">
+        		<div class="row">
+      			  	<div class="col-sm-8">
+              		<h1>Can reducing your lung volume improve how your heart works when you have COPD?</h1>
+									<br>
+									Patients with Chronic Obstructive Pulmonary Disease (COPD) have damage to their airways which makes it difficult to fully exhale, causing air to become trapped in the lung. This leads patients to breathe at abnormally high lung volumes. Increased lung volume squashes the small blood vessels surrounding the lung and may reduce the flow of blood back to the heart. A reduction in the volume of blood back into the heart is likely to reduce the ability of the heart to function properly.  Gentle compression of the abdomen and chest surrounding the lung has been shown to reduce the lung volume at which patients with COPD breathe. We predict lowering lung volume with gentle lung compression will relieve the pressure on small blood vessels and have beneficial effects on heart function.
+
+									<br><br>This study will investigate whether reducing lung volume improves heart function in patients with COPD. By better understanding the effect of lung volume on heart function in COPD we may be able to better treat patients with COPD in the future.
+
+									<br><br>We are looking for people between the ages of 40 and 80, who are a current or ex-smoker with a diagnosis of COPD from their doctor and who do not have heart disease.
+
+									<br><br>If you are interested in learning more about this study, please contact:
+
+									<br>Dr David Chapman
+									<br>Airways Physiology and Imaging Group
+									<br>Woolcock Institute of Medical Research
+									<br>Ph: 02 9114 0413
+									<br>Email: <u><a href='mailto:david.chapman@woolcock.org.au'>david.chapman@woolcock.org.au</a></u>
+
+
+
+
+
+
+
+
+					<br>
+					Details of ethics approvals: X18-0041 & HREC/18/RPAH/64
+					<br>
+					<br>
+                </div>
+                <div class="col-sm-4">
+                    <img class=".img-fluid rounded" style='max-width:100%' src="images/p19.jpg"  ><img>
+              </div>
+    		</div>
+			<input class="btn btn-primary" type=button id=submit__ID value="Click here to participate in the study" />
+			<br>
+        </form>
+	</div>
+</div>
+<script>
+    function F__ID(){
+        //--------------------------------------------
+        var A='woolcock_volunteer_database_';
+        var project_name='p19';
+        //--------------------------------------------
+        var goto_thanks=function(){
+			$vm.nav_load_module('panel_main_projects_thanks');
+        }
+        //--------------------------------------------
+        var join_project=function(){
+            var req={cmd:'query_records_s2',db_pid:'20009681',fields:'ID',where:"S1='"+project_name+"'"}      //check joined or not
+            $VmAPI.request({data:req,callback:function(res){
+                if(res.records.length>0){
+                    goto_thanks();
+                }
+                else{
+					//select ID,UID,Information from [TABLE-20008533] where 'system_20008533_'+S2=@S6
+                    $VmAPI.request({data:{cmd:'secure_query_records',sql:'volunteer registration record',owner:'woolcock'},callback:function(res){
+                        if(res.records.length>0){
+                            var record={
+                                Volunteer:res.records[0].First_Name+' '+res.records[0].Last_Name,
+                                Login_Email:res.records[0].Email,
+                                Project:project_name,
+                                Status:'Registration',
+                            };
+                            var dbv={S1:project_name,PUID:$vm.user_id};
+                            var req={cmd:"add_record_s2",db_pid:'20009681',data:record,dbv:dbv};
+                            $VmAPI.request({data:req,callback:function(res){
+                                goto_thanks();
+                            }});
+							//----------------------
+		                    //sending email
+		                    var req={cmd:"query_records",sql:"select Information from [TABLE-20009716] where @('Project_Name')='"+project_name+"' "};
+		                    $VmAPI.request({data:req,callback:function(res){
+		                        if(res.records.length>0){
+		                            var contact_email=res.records[0].Contact_Email;
+		                            if(contact_email!=''){
+		                                $VmAPI.request({data:{cmd:'send_email',From_Address:'noresponse@woolcock.org.au',From_Name:'Database Administrator',To:contact_email,
+		                                    Title:"Research participation",
+		                                    Body:"A volunteer has shown interest in your study; "+project_name+"."},callback:function(res){
+		                                }})
+		                            }
+		                        }
+		                    }})
+		                    //----------------------
+                        }
+                    }})
+                }
+            }})
+        }
+        //--------------------------------------------
+        $('#submit__ID').on('click',function(){
+			if($vm.user=="guest"){
+				$vm.module_afetr_signin=$vm.vm['__ID'].name;
+				$vm.nav_load_module("panel_main_signin");
+			}
+			else{
+				join_project();
+			}
+        })
+		//--------------------------------------------
+    }
+</script>
+<style>
+	#D__ID{
+		height:100%;
+        overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
+	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#000;
+		font-weight: normal;
+		background: rgba(255,255,255,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
+</style>
