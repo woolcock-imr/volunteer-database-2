@@ -34,51 +34,49 @@
                           <input type="checkbox" name="Medical_Research" id=Medical_Research__ID value='medical research'>
                           <div class="control_indicator"></div>
                       </label>
-					  <!--
                       <label class="control control-checkbox"> <span id=xquest__ID>I would like to receive updates, including the latest medical findings and break-throughs in respiratory and sleep research, from the Woolcock Institute</span>
                               <input type="checkbox"  name="Newsletters" id=Newsletters__ID value='newsletters' >
                           <div class="control_indicator"></div>
                       </label>
-				  -->
                       <span id=quest__ID ><br>Have you been diagnosed with, or think you have?</span>
                       <label class="control control-checkbox">Asthma
-                          <input type="checkbox"  name="Asthma" value="Asthma" />
+                          <input type="checkbox"  name="Asthma" value="Asthma" id="Asthma__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">COPD (Chronic Obstructive Pulmonary Disease)
-                          <input type="checkbox"  name="COPD" value="COPD" />
+                          <input type="checkbox"  name="COPD" value="COPD" id="COPD__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Chronic Bronchitis
-                          <input type="checkbox"  name="Chronic_Bronchitis" value="Chronic Bronchitis" />
+                          <input type="checkbox"  name="Chronic_Bronchitis" value="Chronic Bronchitis" id="Chronic_Bronchitis__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Emphysema
-                          <input type="checkbox"  name="Emphysema" value="Emphysema" />
+                          <input type="checkbox"  name="Emphysema" value="Emphysema" id="Emphysema__ID" />
                           <div class="control_indicator"></div>
                       </label>
-                      <label class="control control-checkbox">Rhinitis
-                          <input type="checkbox"  name="Rhintis" value="Rhintis" />
+                      <label class="control control-checkbox">Rhintis
+                          <input type="checkbox"  name="Rhintis" value="Rhintis" id="Rhintis__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Lung Cancer
-                          <input type="checkbox"  name="Lung_Cancer" value="Lung Cancer" />
+                          <input type="checkbox"  name="Lung_Cancer" value="Lung Cancer" id="Lung_Cancer__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Insomnia
-                          <input type="checkbox"  name="Insomnia" value="Insomnia"/>
+                          <input type="checkbox"  name="Insomnia" value="Insomnia" id="Insomnia__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">Narcolepsy
-                          <input type="checkbox"  name="Narcolepsy" value="Narcolepsy"/>
+                          <input type="checkbox"  name="Narcolepsy" value="Narcolepsy" id="Narcolepsy__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">OSA (Obstructive Sleep Apnoea)
-                          <input type="checkbox"  name="OSA" value="OSA" />
+                          <input type="checkbox"  name="OSA" value="OSA" id="OSA__ID" />
                           <div class="control_indicator"></div>
                       </label>
                       <label class="control control-checkbox">RLS (Restless Leg Syndrome)
-                          <input type="checkbox"  name="RLS" value=RLS />
+                          <input type="checkbox"  name="RLS" value=RLS id="RLS__ID" />
                           <div class="control_indicator"></div>
                       </label>
 
@@ -114,6 +112,7 @@
 		//--------------------------------------------------------
         $('#D__ID').on('load',function(){
             //$('#F__ID')[0].reset();
+			$('#submit__ID').show();
         })
         //-------------------------------------
         $('#submit__ID').on('click',function(){
@@ -222,6 +221,7 @@
 				   	dbv.V2=record.Postcode;
                     var req={cmd:"add_record",db_pid:'20008533',data:record,dbv:dbv}; //geust can add
                     $VmAPI.request({data:req,callback:function(res){
+						$('#submit__ID').hide();
                         send_email();
                     }});
                 }
@@ -249,8 +249,8 @@
             Body+="Executive Director<br>"
             Body+="Woolcock Institute of Medical Research<br>"
             $VmAPI.request({data:{cmd:'send_email',From_Address:From_Address,From_Name:From_Name,To:To,Title:Title,Body:Body},callback:function(res){
-                //alert('Email to: '+$('#Email__ID').val()+' has been sent');
-				//if($vm.module_afetr_signin!=undefined && $vm.module_afetr_signin!='') $vm.nav_load_module($vm.module_afetr_signin);
+				$vm.nav_load_module('panel_main_registration_thanks');
+				/*
 				if($('#Newsletters__ID').is(':checked')==true & $('#Medical_Research__ID').is(':checked')==false){
 					$vm.nav_load_module('panel_main_registration_thanks');
 				}
@@ -258,9 +258,8 @@
 					//copy username and password to the signin section and trigger a click
 					$vm.nav_load_module('panel_main_signin',$vm.root_layout_content_slot,{email:$('#Email__ID').val(),pw:$('#Registration_Password__ID').val()});
 				}
-
+				*/
             }})
-
         }
     }
 </script>
