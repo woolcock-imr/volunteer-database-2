@@ -34,6 +34,7 @@
 		"projects_windfarm_thanks":        {"table_id":"--------","url":"/modules/projects/windfarm/thanks.html"},
 		"projects_normative":        	   {"table_id":"--------","url":"/modules/projects/normative/normative.html"},
 		"projects_thanks":                 {"table_id":"","url":"/modules/projects/thanks.html"},
+		"projects_flat":               	{"table_id":"--------","url":"/modules/projects/flat/flat.html"},
 
 		"mailing":                 {"table_id":"91000082","url":"/modules/volunteer/mailing.html"}
 	}
